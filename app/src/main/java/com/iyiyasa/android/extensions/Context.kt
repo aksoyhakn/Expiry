@@ -1,20 +1,19 @@
 package com.iyiyasa.android.extensions
 
+import android.Manifest
 import android.app.Activity
-import android.content.ActivityNotFoundException
 import android.content.Context
-import android.content.Intent
 import android.content.res.Configuration
-import android.net.Uri
 import android.os.Build
 import android.os.Handler
 import android.os.Looper
-import android.provider.Settings
 import android.text.SpannableString
-import android.util.DisplayMetrics
 import android.view.*
 import androidx.core.content.ContextCompat
 import com.iyiyasa.android.R
+import com.iyiyasa.android.utils.Constants.Camera.REQUEST_CODE_CAMERA_PERMISSION
+import pub.devrel.easypermissions.EasyPermissions
+import pub.devrel.easypermissions.PermissionRequest
 
 fun Activity?.setWindowFlag(on: Boolean) {
     this?.let {
@@ -131,5 +130,32 @@ fun Context.getToday(): String {
             "resString(R.string.today_goodnight)"
         }
     }
+}
+
+fun Context.isCameraPermission(): Boolean = EasyPermissions.hasPermissions(
+    this,
+    Manifest.permission.CAMERA
+)
+
+
+fun Activity.requestCameraPermission2() {
+    EasyPermissions.requestPermissions(
+        this,
+        resString(R.string.camera_permission),
+        REQUEST_CODE_CAMERA_PERMISSION,
+        Manifest.permission.CAMERA
+    )
+}
+
+
+fun Activity.requestCameraPermission() {
+    EasyPermissions.requestPermissions(
+        PermissionRequest.Builder(this, REQUEST_CODE_CAMERA_PERMISSION, Manifest.permission.CAMERA)
+            .setRationale(resString(R.string.camera_permission))
+            .setPositiveButtonText(resString(R.string.camera_permission_button_positive))
+            .setNegativeButtonText(resString(R.string.camera_permission_button_negative))
+            .setTheme(R.style.AlertDialogTheme)
+            .build()
+    )
 }
 

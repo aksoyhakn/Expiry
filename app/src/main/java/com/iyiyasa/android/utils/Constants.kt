@@ -27,6 +27,7 @@ object Constants {
         val PICK_PICTURE_FROM_CHOOSER = 34963
         val TAKE_PICTURE = 34964
         val CAPTURE_VIDEO = 34965
+        val REQUEST_CODE_CAMERA_PERMISSION = 100
     }
 
 
