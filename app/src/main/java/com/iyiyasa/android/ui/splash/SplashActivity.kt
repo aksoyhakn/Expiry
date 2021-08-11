@@ -7,7 +7,10 @@ import com.iyiyasa.android.base.viewmodel.BaseViewModel
 import com.iyiyasa.android.data.preference.PreferenceHelperImp
 import com.iyiyasa.android.databinding.ActivitySplashBinding
 import com.iyiyasa.android.extensions.handler
+import com.iyiyasa.android.ui.barcode.BarcodeActivity
 import com.iyiyasa.android.utils.analytics.SCREEN
+import com.iyiyasa.android.utils.transition.ActivityTransition
+import com.iyiyasa.android.utils.transition.Transition
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Inject
@@ -28,5 +31,13 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
 
     override fun bindScreen() {
         dataBinding.viewModel = viewModel
+
+        handler(3000){
+            ActivityTransition.Builder(this, BarcodeActivity::class.java)
+                .setData(intent.data)
+                .setClearTask(true)
+                .build()
+                .start()
+        }
     }
 }
