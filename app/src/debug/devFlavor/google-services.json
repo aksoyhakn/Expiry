@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "421899971669",
+    "project_id": "iyi-yasa-beta",
+    "storage_bucket": "iyi-yasa-beta.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:421899971669:android:5012d3d472e0536cf2f8dc",
+        "android_client_info": {
+          "package_name": "com.iyiyasa.android.ldsDev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "421899971669-nrihgqchsu7epnb7mojqj8l8qhk30gvn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.iyiyasa.android.ldsDev",
+            "certificate_hash": "b7ceb7261ffbd79d8f72cb42a51387ad7ea9b8fe"
+          }
+        },
+        {
+          "client_id": "421899971669-5gjjmpbe0eljlg3hlfb7kq50j572mgg3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCz_ZxC1L_Ach-5aG5qfQ_IpuT1Da8cgrY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "421899971669-5gjjmpbe0eljlg3hlfb7kq50j572mgg3.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "421899971669-v8c1peds0la4gdkin3qga00l9e1evt18.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.iyiyasa.iosbeta"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

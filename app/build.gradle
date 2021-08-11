@@ -1,0 +1,270 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-parcelize'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
+
+apply from: "$rootDir/dependencies.gradle"
+apply plugin: 'kotlin-android'
+apply plugin: 'com.huawei.agconnect'
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'
+
+
+android {
+    compileSdkVersion versions.compileSdk
+    defaultConfig {
+        applicationId "com.iyiyasa.android"
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.compileSdk
+        versionCode versions.versionCode
+        versionName versions.versionName
+        vectorDrawables.useSupportLibrary = true
+        testInstrumentationRunner "com.iyiyasa.android.AppTestRunner"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments["dagger.hilt.disableModulesHaveInstallInCheck"] = "true"
+            }
+        }
+    }
+    signingConfigs {
+        release {
+            keyAlias 'sweaters'
+            keyPassword 'Kuka142970.'
+            storeFile file('../distribution/SweatersKeystore.jks')
+            storePassword 'Kuka142970.'
+        }
+    }
+
+    buildFeatures {
+        dataBinding = true
+        viewBinding = true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+
+    flavorDimensions "default"
+
+    lintOptions {
+        abortOnError false
+    }
+
+    sourceSets {
+        androidTest.java.srcDirs += "src/test-common/java"
+        test.java.srcDirs += "src/test-common/java"
+        test.assets.srcDirs += files("$projectDir/schemas".toString())
+    }
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+            returnDefaultValues = true
+        }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/ASL2.0'
+        exclude("META-INF/*.kotlin_module")
+    }
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+        kotlinOptions.freeCompilerArgs += ["-Xopt-in=kotlin.time.ExperimentalTime"]
+        kotlinOptions.freeCompilerArgs += ["-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi"]
+    }
+
+    buildTypes {
+        release {
+            debuggable false
+            minifyEnabled false
+            shrinkResources false
+            useProguard true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField 'Boolean', 'LOG_ENABLED', 'false'
+            manifestPlaceholders = [crashlyticsCollectionEnabled: "true"]
+            signingConfig signingConfigs.release
+        }
+
+        debug {
+            debuggable true
+            minifyEnabled false
+            shrinkResources false
+            useProguard false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField 'Boolean', 'LOG_ENABLED', 'true'
+            buildConfigField 'Boolean', 'FIREBASE_ANALYTICS_DEACTIVATED', 'true'
+            manifestPlaceholders = [crashlyticsCollectionEnabled: "true"]
+            signingConfig signingConfigs.debug
+        }
+    }
+
+    productFlavors {
+
+        liveFlavor {
+            resValue "string", "app_name", "İyiyasa"
+            applicationId "com.iyiyasa.android"
+            android.defaultConfig.applicationId "com.iyiyasa.android"
+            ext.betaDistributionReleaseNotes = "BetaReleaseNote"
+            ext.betaDistributionGroupAliases = "qa,managers,android-developers"
+            ext.betaDistributionNotifications = true
+            buildConfigField("String", "BASE_X_CLIENT_ID", '"com.iyiyasa.android"')
+            buildConfigField("String", "BASE_X_CLIENT_SECRET", '"0e222daf-4b15-44dc-bf56-b5edfdacc800"')
+            buildConfigField("String", "BASE_URL", "\"https://mobileapi.sweatersapp.com/\"")
+            buildConfigField("String", "APPCENTER_KEY", '"f4f5bbde-d4a6-499b-83e1-8c036c06b3a1"')
+            buildConfigField 'Boolean', 'GADGET_ENABLED', 'false'
+        }
+
+        devFlavor {
+            resValue "string", "app_name", "İyiyasa - dev"
+            applicationId "com.iyiyasa.android.ldsDev"
+            android.defaultConfig.applicationId "com.iyiyasa.android.ldsDev"
+            ext.betaDistributionReleaseNotes = "liveReleaseNote"
+            ext.betaDistributionGroupAliases = "qa,managers,android-developers"
+            ext.betaDistributionNotifications = true
+            buildConfigField("String", "BASE_X_CLIENT_ID", '"com.iyiyasa.android"')
+            buildConfigField("String", "BASE_X_CLIENT_SECRET", '"0e222daf-4b15-44dc-bf56-b5edfdacc800"')
+            buildConfigField("String", "BASE_URL", "\"http://mobileapi-self.sweatersapp.com/\"")
+            buildConfigField("String", "APPCENTER_KEY", '"eb07d35a-6877-4a21-9337-1c36e01a47ba"')
+            buildConfigField 'Boolean', 'GADGET_ENABLED', 'true'
+        }
+
+    }
+}
+
+dependencies {
+
+    // android supports
+    implementation "com.google.android.material:material:$versions.materialVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$versions.constraintVersion"
+    implementation "androidx.appcompat:appcompat:$versions.appcompatVersion"
+
+    // architecture components
+    implementation "androidx.fragment:fragment-ktx:$versions.fragmentVersion"
+    implementation "androidx.lifecycle:lifecycle-extensions:$versions.lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$versions.lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$versions.lifecycleVersion"
+    implementation "androidx.room:room-runtime:$versions.roomVersion"
+    implementation "androidx.room:room-ktx:$versions.roomVersion"
+    kapt "androidx.room:room-compiler:$versions.roomVersion"
+    testImplementation "androidx.arch.core:core-testing:$versions.archCompomentVersion"
+
+    // hilt
+    implementation "com.google.dagger:hilt-android:$versions.hiltCoreVersion"
+    implementation "androidx.hilt:hilt-common:$versions.hiltVersion"
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$versions.hiltVersion"
+    kapt "com.google.dagger:hilt-compiler:$versions.hiltCoreVersion"
+    kapt "androidx.hilt:hilt-compiler:$versions.hiltVersion"
+    androidTestImplementation "com.google.dagger:hilt-android-testing:$versions.hiltCoreVersion"
+    kaptAndroidTest "com.google.dagger:hilt-compiler:$versions.hiltCoreVersion"
+
+    // network
+    implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$versions.kotlinCoroutineAdapterVersion"
+    implementation "com.squareup.retrofit2:retrofit:$versions.retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-moshi:$versions.retrofitVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$versions.okhttpVersion"
+
+    // gson
+    implementation "com.google.code.gson:gson:$versions.gson"
+    implementation("com.squareup.retrofit2:converter-gson:$versions.retrofitVersion")
+
+
+    // coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutinesVersion"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutinesVersion"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$versions.coroutinesVersion"
+
+    // glide
+    implementation "com.github.bumptech.glide:glide:$versions.glideVersion"
+    implementation "com.github.florent37:glidepalette:$versions.glidePaletteVersion"
+    kapt "com.github.bumptech.glide:compiler:$versions.glideVersion"
+
+    // recyclerView
+    implementation "androidx.recyclerview:recyclerview:$versions.recyclerView"
+
+    // debugging
+    implementation "com.jakewharton.timber:timber:$versions.timberVersion"
+
+    //appcenter
+    implementation "com.microsoft.appcenter:appcenter-analytics:$versions.appCenterVersion"
+    implementation "com.microsoft.appcenter:appcenter-crashes:$versions.appCenterVersion"
+
+    //logger
+    implementation "com.orhanobut:logger:$versions.logger"
+
+
+    //chuck
+    implementation "com.readystatesoftware.chuck:library:$versions.chuck"
+    implementation "com.readystatesoftware.chuck:library:$versions.chuck"
+
+    //firebase
+    implementation platform('com.google.firebase:firebase-bom:26.7.0')
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+    implementation 'com.google.firebase:firebase-messaging:21.0.1'
+    implementation 'com.google.firebase:firebase-crashlytics-ktx'
+    implementation 'com.google.firebase:firebase-dynamic-links-ktx'
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+
+
+    //other
+    implementation "com.github.zladnrms:RoundableLayout:$versions.roudableLayout"
+    implementation "com.github.antonKozyriatskyi:CircularProgressIndicator:$versions.circleProgress"
+    implementation "com.airbnb.android:lottie:$versions.lottie"
+    implementation "com.jakewharton.rxbinding2:rxbinding-kotlin:$versions.rxBinding"
+    implementation "com.github.zcweng:switch-button:$versions.switchButton"
+    implementation "com.google.android:flexbox:$versions.flexLayout"
+    implementation "com.squareup:otto:$versions.otto"
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
+    // unit test
+    testImplementation "junit:junit:$versions.junitVersion"
+    testImplementation "androidx.test:core:$versions.androidxTest"
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$versions.mockitoKotlinVersion"
+    testImplementation "org.mockito:mockito-inline:$versions.mockitoInlineVersion"
+    testImplementation "app.cash.turbine:turbine:$versions.turbineVersion"
+    testImplementation "org.robolectric:robolectric:$versions.robolectricVersion"
+    androidTestImplementation "com.google.truth:truth:$versions.truthVersion"
+    androidTestImplementation "androidx.test.ext:junit:$versions.androidxTestJunit"
+    androidTestImplementation "com.android.support.test:runner:$versions.androidTestRunner"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$versions.espressoVersion"
+    implementation "androidx.core:core-ktx:+"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    implementation 'pub.devrel:easypermissions:3.0.0'
+    implementation 'com.github.jkwiecien:EasyImage:3.0.1'
+    implementation 'com.github.yalantis:ucrop:2.2.3'
+
+    //Huawei Map
+    implementation 'com.huawei.hms:maps:5.1.0.300'
+    implementation 'com.huawei.hms:location:5.0.4.300'
+    implementation 'com.huawei.agconnect:agconnect-core:1.4.0.300'
+    implementation 'pub.devrel:easypermissions:3.0.0'
+
+    //Google Map
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
+    implementation 'com.google.android.gms:play-services-location:17.1.0'
+}
+
+apply from: "$rootDir/spotless.gradle"
+repositories {
+    maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
+    mavenCentral()
+}

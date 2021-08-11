@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Margin -->
+    <dimen name="margin1">1dp</dimen>
+    <dimen name="margin2">2dp</dimen>
+    <dimen name="margin3">3dp</dimen>
+    <dimen name="margin4">4dp</dimen>
+    <dimen name="margin5">5dp</dimen>
+    <dimen name="margin6">6dp</dimen>
+    <dimen name="margin7">7dp</dimen>
+    <dimen name="margin8">8dp</dimen>
+    <dimen name="margin9">9dp</dimen>
+    <dimen name="margin10">10dp</dimen>
+    <dimen name="margin11">11dp</dimen>
+    <dimen name="margin12">12dp</dimen>
+    <dimen name="margin14">14dp</dimen>
+    <dimen name="margin13">13dp</dimen>
+    <dimen name="margin15">15dp</dimen>
+    <dimen name="margin16">16dp</dimen>
+    <dimen name="margin17">17dp</dimen>
+    <dimen name="margin18">18dp</dimen>
+    <dimen name="margin19">19dp</dimen>
+    <dimen name="margin20">20dp</dimen>
+    <dimen name="margin21">21dp</dimen>
+    <dimen name="margin22">22dp</dimen>
+    <dimen name="margin23">23dp</dimen>
+    <dimen name="margin24">24dp</dimen>
+    <dimen name="margin25">25dp</dimen>
+    <dimen name="margin26">26dp</dimen>
+    <dimen name="margin28">28dp</dimen>
+    <dimen name="margin30">30dp</dimen>
+    <dimen name="margin32">32dp</dimen>
+    <dimen name="margin34">34dp</dimen>
+    <dimen name="margin35">35dp</dimen>
+    <dimen name="margin36">36dp</dimen>
+    <dimen name="margin40">40dp</dimen>
+    <dimen name="margin42">42dp</dimen>
+    <dimen name="margin48">48dp</dimen>
+    <dimen name="margin52">52dp</dimen>
+    <dimen name="margin72">72dp</dimen>
+    <dimen name="margin80">80dp</dimen>
+    <dimen name="margin90">90dp</dimen>
+    <dimen name="margin100">100dp</dimen>
+    <dimen name="margin168">168dp</dimen>
+    <dimen name="margin146">146dp</dimen>
+    <dimen name="margin310">310dp</dimen>
+    <dimen name="margin50">50dp</dimen>
+    <dimen name="margin55">55dp</dimen>
+    <dimen name="margin73">73dp</dimen>
+    <dimen name="margin121">121dp</dimen>
+    <dimen name="margin132">132dp</dimen>
+
+
+    <!-- Fontsize -->
+    <dimen name="fontSize2">2sp</dimen>
+    <dimen name="fontSize3">3sp</dimen>
+    <dimen name="fontSize4">4sp</dimen>
+    <dimen name="fontSize5">5sp</dimen>
+    <dimen name="fontSize6">6sp</dimen>
+    <dimen name="fontSize7">7sp</dimen>
+    <dimen name="fontSize8">8sp</dimen>
+    <dimen name="fontSize9">9sp</dimen>
+    <dimen name="fontSize10">10sp</dimen>
+    <dimen name="fontSize12">12sp</dimen>
+    <dimen name="fontSize14">14sp</dimen>
+    <dimen name="fontSize13">13sp</dimen>
+    <dimen name="fontSize15">15sp</dimen>
+    <dimen name="fontSize16">16sp</dimen>
+    <dimen name="fontSize17">17sp</dimen>
+    <dimen name="fontSize18">18sp</dimen>
+    <dimen name="fontSize19">19sp</dimen>
+    <dimen name="fontSize20">20sp</dimen>
+    <dimen name="fontSize21">21sp</dimen>
+    <dimen name="fontSize22">22sp</dimen>
+    <dimen name="fontSize23">23sp</dimen>
+    <dimen name="fontSize24">24sp</dimen>
+    <dimen name="fontSize25">25sp</dimen>
+    <dimen name="fontSize26">26sp</dimen>
+    <dimen name="fontSize28">28sp</dimen>
+    <dimen name="fontSize30">30sp</dimen>
+    <dimen name="fontSize32">32sp</dimen>
+    <dimen name="fontSize34">34sp</dimen>
+    <dimen name="fontSize35">35sp</dimen>
+    <dimen name="fontSize40">40sp</dimen>
+    <dimen name="fontSize42">42sp</dimen>
+    <dimen name="fontSize48">48sp</dimen>
+    <dimen name="fontSize52">52sp</dimen>
+    <dimen name="fontSize72">72sp</dimen>
+    <dimen name="fontSize168">168sp</dimen>
+
+    <!-- Margin -->
+    <dimen name="dotSize">6dp</dimen>
+    <dimen name="progressHeight">2dp</dimen>
+    <dimen name="progressWidth">32dp</dimen>
+    <dimen name="progressMargin">2dp</dimen>
+
+</resources>
