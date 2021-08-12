@@ -30,6 +30,7 @@ class BarcodeActivity : BaseSlideActivity<ActivityBarcodeBinding>(R.layout.activ
     override fun bindScreen() {
         dataBinding.viewModel = viewModel
         initScannerView()
+        viewModel.getInit("")
     }
 
     private fun initScannerView() {

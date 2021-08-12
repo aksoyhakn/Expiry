@@ -127,7 +127,7 @@ android {
             ext.betaDistributionNotifications = true
             buildConfigField("String", "BASE_X_CLIENT_ID", '"com.iyiyasa.android"')
             buildConfigField("String", "BASE_X_CLIENT_SECRET", '"0e222daf-4b15-44dc-bf56-b5edfdacc800"')
-            buildConfigField("String", "BASE_URL", "\"https://mobileapi.sweatersapp.com/\"")
+            buildConfigField("String", "BASE_URL", "\"https://www.netdata.com/JSON/\"")
             buildConfigField("String", "APPCENTER_KEY", '"f4f5bbde-d4a6-499b-83e1-8c036c06b3a1"')
             buildConfigField 'Boolean', 'GADGET_ENABLED', 'false'
         }
@@ -141,7 +141,7 @@ android {
             ext.betaDistributionNotifications = true
             buildConfigField("String", "BASE_X_CLIENT_ID", '"com.iyiyasa.android"')
             buildConfigField("String", "BASE_X_CLIENT_SECRET", '"0e222daf-4b15-44dc-bf56-b5edfdacc800"')
-            buildConfigField("String", "BASE_URL", "\"http://mobileapi-self.sweatersapp.com/\"")
+            buildConfigField("String", "BASE_URL", "\"https://www.netdata.com/JSON/\"")
             buildConfigField("String", "APPCENTER_KEY", '"eb07d35a-6877-4a21-9337-1c36e01a47ba"')
             buildConfigField 'Boolean', 'GADGET_ENABLED', 'true'
         }
