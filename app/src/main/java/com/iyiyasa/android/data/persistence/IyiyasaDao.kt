@@ -4,7 +4,7 @@ import androidx.room.*
 import com.iyiyasa.android.data.persistence.entity.Data
 
 /**
- * Created by hakanaksoy on 11.05.2021.
+ * Created by hakanaksoy on 11.08.2021.
  * Loodos
  */
 
@@ -12,20 +12,20 @@ import com.iyiyasa.android.data.persistence.entity.Data
 @Dao
 interface IyiyasaDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertUser(user: Data)
+    fun insertData(data: Data)
 
     @Update
-    fun updateUser(user: Data)
+    fun updateData(data: Data)
 
     @Delete
-    fun deleteUser(user: Data)
+    fun deleteData(data: Data)
 
     @Query("DELETE FROM Data")
-    fun deleteAllUsers()
+    fun deleteAllData()
 
-    @Query("SELECT * FROM Data WHERE data == :name")
-    fun getUserByName(name: String): List<Data>
+    @Query("SELECT * FROM Data WHERE data.ID == :id")
+    fun getDataByID(id: String): List<Data>
 
     @Query("SELECT * FROM Data")
-    fun getUsers(): List<Data>
+    fun getData(): List<Data>
 }

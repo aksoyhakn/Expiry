@@ -4,6 +4,9 @@ import androidx.activity.viewModels
 import com.iyiyasa.android.R
 import com.iyiyasa.android.base.activity.BaseActivity
 import com.iyiyasa.android.base.viewmodel.BaseViewModel
+import com.iyiyasa.android.data.persistence.AppDatabase
+import com.iyiyasa.android.data.persistence.IyiyasaDao
+import com.iyiyasa.android.data.persistence.entity.Data
 import com.iyiyasa.android.databinding.ActivitySplashBinding
 import com.iyiyasa.android.extensions.handler
 import com.iyiyasa.android.extensions.isCameraPermission
@@ -46,6 +49,17 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
             .setClearTask(true)
             .build()
             .start()
+
+
+        /*
+
+        var database : AppDatabase = AppDatabase.getDatabase(this)!!
+        database.iyiyasaDAO().insertUser(Data(null,"5449000011114","COCA COLA 200ML"))
+        database.iyiyasaDAO().insertUser(Data(7343,"5449000011114","COCA COLA 200ML"))
+        database.iyiyasaDAO().insertUser(Data(null,"5449000011114","COCA COLA 200ML"))
+        database.iyiyasaDAO().getUsers()
+
+         */
     }
 
     override fun onRequestPermissionsResult(
