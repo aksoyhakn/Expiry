@@ -12,6 +12,7 @@ import com.iyiyasa.android.extensions.handler
 import com.iyiyasa.android.extensions.isCameraPermission
 import com.iyiyasa.android.extensions.requestCameraPermission
 import com.iyiyasa.android.ui.barcode.BarcodeActivity
+import com.iyiyasa.android.ui.home.HomeActivity
 import com.iyiyasa.android.utils.transition.ActivityTransition
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -44,7 +45,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
     }
 
     fun openHome() {
-        ActivityTransition.Builder(this, BarcodeActivity::class.java)
+        ActivityTransition.Builder(this, HomeActivity::class.java)
             .setData(intent.data)
             .setClearTask(true)
             .build()

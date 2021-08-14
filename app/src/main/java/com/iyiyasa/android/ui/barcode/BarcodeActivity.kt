@@ -1,5 +1,7 @@
 package com.iyiyasa.android.ui.barcode
 
+import android.app.Activity
+import android.content.Intent
 import android.util.Log
 import androidx.activity.viewModels
 import com.google.zxing.Result
@@ -52,5 +54,7 @@ class BarcodeActivity : BaseSlideActivity<ActivityBarcodeBinding>(R.layout.activ
 
     override fun handleResult(rawResult: Result?) {
         Log.d("TEST",rawResult?.text.toString())
+        setResult(Activity.RESULT_OK, intent)
+        finish()
     }
 }
