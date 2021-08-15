@@ -4,4 +4,37 @@
     <color name="colorPrimaryDark">#ffffff</color>
     <color name="colorAccent">#ffffff</color>
     <color name="statusbar">#33000000</color>
+
+
+    <!-- style - color -->
+    <color name="antrasit">#242836</color>
+    <color name="antrasit_6">#0F242836</color>
+    <color name="antrasit_50">#80242836</color>
+    <color name="black_tint">#66000000</color>
+    <color name="dark_grey">#7b7c86</color>
+    <color name="dark_grey_50">#807B7C86</color>
+    <color name="search_color_hint">#9997a7</color>
+    <color name="light_grey">#9695a4</color>
+    <color name="light_grey_50">#809695A4</color>
+    <color name="solitude">#e9ecef</color>
+    <color name="yoga">#5d4afb</color>
+    <color name="orange">#fc622a</color>
+    <color name="awareness">#8f8cf7</color>
+    <color name="white">#ffffff</color>
+    <color name="white_20">#33FFFFFF</color>
+    <color name="white_50">#80FFFFFF</color>
+    <color name="light_green">#4ed9c7</color>
+    <color name="light_blue">#42b5f9</color>
+    <color name="dark_green">#006562</color>
+    <color name="turquoise">#07bab2</color>
+    <color name="turquoise_8">#1407BAB2</color>
+    <color name="custom_accent_color_blue">#007de9</color>
+    <color name="mercan">#fc3042</color>
+    <color name="navy">#003aa8</color>
+    <color name="green">#04ad80</color>
+    <color name="somon">#f19d79</color>
+    <color name="colors_primary_light_gray">#e7e9ec</color>
+    <color name="colors_secondary_light_turkuaz">#5cdccb</color>
+    <!-- style - color -->
+
 </resources>

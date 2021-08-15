@@ -44,4 +44,357 @@
     </style>
     <!-- Camera Permission-->
 
+
+     <!-- font - style -->
+    <style name="PinView">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:fontFamily">@font/dm_sans_medium</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColorHint">@color/light_grey</item>
+        <item name="android:textColor">@color/antrasit</item>
+    </style>
+
+    <style name="Headline2DarkRight">
+        <item name="android:gravity">end</item>
+        <item name="android:fontFamily">@font/dm_sans</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:letterSpacing">-0.01</item>
+        <item name="android:textColor">@color/antrasit</item>
+    </style>
+    <style name="Headline2DarkLeft">
+        <item name="android:fontFamily">@font/dm_sans</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:letterSpacing">-0.01</item>
+        <item name="android:textColor">@color/antrasit</item>
+    </style>
+    <style name="Headline2DarkCenter">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:fontFamily">@font/dm_sans</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:letterSpacing">-0.01</item>
+        <item name="android:textColor">@color/antrasit</item>
+    </style>
+    <style name="HeadlinePrimaryWhiteRight">
+        <item name="android:gravity">end</item>
+        <item name="android:fontFamily">@font/dm_sans_medium</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:letterSpacing">-0.01</item>
+        <item name="android:lineSpacingExtra">8sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="HeadlinePrimaryWhiteLeft">
+        <item name="android:fontFamily">@font/dm_sans_medium</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">24sp</item>
+        <item name="lineHeight">32sp</item>
+        <item name="android:lineSpacingExtra">8sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="HeadlinePrimaryWhiteCenter">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:fontFamily">@font/dm_sans_medium</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:letterSpacing">-0.01</item>
+        <item name="android:lineSpacingExtra">8sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="TitlePrimaryRight">
+        <item name="android:gravity">end</item>
+        <item name="android:fontFamily">@font/dm_sans</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/antrasit</item>
+    </style>
+    <style name="TitlePrimaryLeft">
+        <item name="android:fontFamily">@font/dm_sans</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/antrasit</item>
+    </style>
+    <style name="TitlePrimaryCenter">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:fontFamily">@font/dm_sans</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/antrasit</item>
+    </style>
+    <style name="TitleNavLeft">
+        <item name="android:fontFamily">@font/dm_sans_medium</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/antrasit</item>
+    </style>
+    <style name="SubtitlePrimaryRight">
+        <item name="android:gravity">end</item>
+        <item name="android:fontFamily">@font/dm_sans_medium</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/antrasit</item>
+    </style>
+    <style name="SubtitlePrimaryLeft">
+        <item name="android:fontFamily">@font/dm_sans_medium</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/antrasit</item>
+    </style>
+    <style name="SubtitlePrimaryCenter">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:fontFamily">@font/dm_sans_medium</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/antrasit</item>
+    </style>
+    <style name="ButtonLabelWhiteL">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:fontFamily">@font/dm_sans_medium</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:letterSpacing">0.02</item>
+        <item name="android:lineSpacingExtra">10sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="BodyPrimaryRight">
+        <item name="android:gravity">end</item>
+        <item name="android:fontFamily">@font/dm_sans</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:lineSpacingExtra">8sp</item>
+        <item name="android:textColor">@color/dark_grey</item>
+    </style>
+    <style name="BodyPrimaryLeft">
+        <item name="android:fontFamily">@font/dm_sans</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">16sp</item>
+        <item name="lineHeight">24sp</item>
+        <item name="android:lineSpacingExtra">8sp</item>
+        <item name="android:textColor">@color/dark_grey</item>
+        <item name="android:textColorHint">@color/dark_grey</item>
+    </style>
+    <style name="BodyPrimaryDarkLeft">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:fontFamily">@font/dm_sans</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:lineSpacingExtra">8sp</item>
+        <item name="android:textColor">@color/antrasit</item>
+    </style>
+    <style name="BodyPrimaryCenter3">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:fontFamily">@font/dm_sans</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:lineSpacingExtra">8sp</item>
+        <item name="android:textColor">@color/antrasit</item>
+    </style>
+    <style name="BodyPrimaryCenter2">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:fontFamily">@font/dm_sans</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:lineSpacingExtra">8sp</item>
+        <item name="android:textColor">@color/antrasit</item>
+    </style>
+    <style name="BodyPrimaryCenter">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:fontFamily">@font/dm_sans</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:lineSpacingExtra">8sp</item>
+        <item name="android:textColor">@color/dark_grey</item>
+    </style>
+    <style name="TitleSecondaryRight">
+        <item name="android:gravity">end</item>
+        <item name="android:fontFamily">@font/dm_sans</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/antrasit</item>
+    </style>
+    <style name="TitleSecondaryLeft">
+        <item name="android:fontFamily">@font/dm_sans</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/antrasit</item>
+    </style>
+    <style name="TitleSecondaryCenter">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:fontFamily">@font/dm_sans</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/antrasit</item>
+    </style>
+    <style name="ButtonCategory">
+        <item name="android:fontFamily">@font/dm_sans_regular</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">15sp</item>
+        <item name="lineHeight">18sp</item>
+        <item name="android:lineSpacingExtra">3sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="SubtitleSecondaryRight">
+        <item name="android:gravity">end</item>
+        <item name="android:fontFamily">@font/dm_sans_medium</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:lineSpacingExtra">0sp</item>
+        <item name="android:textColor">@color/antrasit</item>
+    </style>
+    <style name="SubtitleSecondaryLeft">
+        <item name="android:fontFamily">@font/dm_sans_medium</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:lineSpacingExtra">0sp</item>
+        <item name="android:textColor">@color/antrasit</item>
+    </style>
+    <style name="SubtitleSecondaryCenter">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:fontFamily">@font/dm_sans_medium</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:lineSpacingExtra">0sp</item>
+        <item name="android:textColor">@color/antrasit</item>
+    </style>
+    <style name="ButtonLabelDarkM">
+        <item name="android:gravity">end</item>
+        <item name="android:fontFamily">@font/dm_sans</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:lineSpacingExtra">3sp</item>
+        <item name="android:textColor">@color/antrasit</item>
+    </style>
+    <style name="ButtonLabelWhiteS">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:fontFamily">@font/dm_sans_medium</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:letterSpacing">0.02</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="CaptionPrimaryRight">
+        <item name="android:gravity">end</item>
+        <item name="android:fontFamily">@font/dm_sans</item>
+        <item name="android:textStyle">normal</item>
+        <item name="lineHeight">24sp</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/dark_grey</item>
+    </style>
+    <style name="CaptionPrimaryLeft">
+        <item name="android:fontFamily">@font/dm_sans</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">14sp</item>
+        <item name="lineHeight">24sp</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:textColor">@color/dark_grey</item>
+    </style>
+    <style name="CaptionPrimaryCenter">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:fontFamily">@font/dm_sans</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/dark_grey</item>
+    </style>
+    <style name="ButtonLabelDarkS">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:fontFamily">@font/dm_sans</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/antrasit</item>
+    </style>
+    <style name="BodySecondaryRight">
+        <item name="android:gravity">end</item>
+        <item name="android:fontFamily">@font/dm_sans</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:lineSpacingExtra">10sp</item>
+        <item name="android:textColor">@color/dark_grey</item>
+    </style>
+    <style name="BodySecondaryLeft">
+        <item name="android:fontFamily">@font/dm_sans</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:lineSpacingExtra">10sp</item>
+        <item name="android:textColor">@color/dark_grey</item>
+    </style>
+    <style name="BodySecondaryCenter">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:fontFamily">@font/dm_sans</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:lineSpacingExtra">10sp</item>
+        <item name="android:textColor">@color/dark_grey</item>
+    </style>
+    <style name="FootlineDarkRight">
+        <item name="android:gravity">end</item>
+        <item name="android:fontFamily">@font/dm_sans</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/antrasit</item>
+    </style>
+    <style name="FootlineDarkLeft">
+        <item name="android:fontFamily">@font/dm_sans</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/antrasit</item>
+    </style>
+    <style name="FootlineDarkCenter">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:fontFamily">@font/dm_sans</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/antrasit</item>
+    </style>
+    <style name="Button2WhiteCenter">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:fontFamily">@font/dm_sans</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:letterSpacing">0.05</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+        <item name="android:textColor">#ffffff</item>
+    </style>
+    <style name="ButtonCategoryMain">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:fontFamily">@font/dm_sans_medium</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:letterSpacing">0.02</item>
+        <item name="android:textColor">@color/orange</item>
+    </style>
+    <style name="FootlineGreyRight">
+        <item name="android:gravity">end</item>
+        <item name="android:fontFamily">@font/dm_sans</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/dark_grey</item>
+    </style>
+    <style name="FootlineGreyLeft">
+        <item name="android:fontFamily">@font/dm_sans</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/dark_grey</item>
+    </style>
+
+    <style name="FootlineGreyCenter">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:fontFamily">@font/dm_sans</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/dark_grey</item>
+    </style>
+
+    <style name="CodeAgain">
+        <item name="android:fontFamily">@font/dm_sans_medium</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/antrasit</item>
+    </style>
+
+    <!-- font - style -->
+
+
 </resources>

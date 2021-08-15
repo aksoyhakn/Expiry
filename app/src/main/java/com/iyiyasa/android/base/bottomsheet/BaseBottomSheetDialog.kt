@@ -4,31 +4,33 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.iyiyasa.android.R
-import com.iyiyasa.android.utils.analytics.FirebaseAnalyticsHelper
-import javax.inject.Inject
+import com.iyiyasa.android.base.viewmodel.BaseViewModel
+import com.iyiyasa.android.ui.common.components.loading.LottieProgressDialog
+import com.iyiyasa.android.utils.AutoClearedFragmentValue
+
+abstract class BaseBottomSheetDialog<T : ViewDataBinding>(var layoutId:Int) : BottomSheetDialogFragment() {
 
 
-abstract class BaseBottomSheetDialog<DB : ViewDataBinding> : BottomSheetDialogFragment() {
+    protected var dataBinding: T by AutoClearedFragmentValue()
 
-    lateinit var dataBinding: DB
+    private var progress: LottieProgressDialog? = null
 
-    @Inject
-    lateinit var firebaseAnalyticsHelper: FirebaseAnalyticsHelper
+    abstract fun getBaseViewModel(): BaseViewModel
 
-    @LayoutRes
-    abstract fun getLayoutResId(): Int
+    open fun bindScreen(){
+        dataBinding.lifecycleOwner=this
+    }
 
-    abstract fun bindScreen()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setStyle(STYLE_NO_FRAME, R.style.BottomSheetDialogStyle)
+        setStyle(STYLE_NORMAL, R.style.BottomSheetDialogStyle)
     }
 
     override fun onCreateView(
@@ -36,7 +38,7 @@ abstract class BaseBottomSheetDialog<DB : ViewDataBinding> : BottomSheetDialogFr
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        dataBinding = DataBindingUtil.inflate(inflater, getLayoutResId(), container, false)
+        dataBinding = DataBindingUtil.inflate(inflater, layoutId, container, false)
         return dataBinding.root
     }
 

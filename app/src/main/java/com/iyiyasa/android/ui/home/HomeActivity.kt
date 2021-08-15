@@ -6,11 +6,12 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import com.iyiyasa.android.R
-import com.iyiyasa.android.base.activity.BaseActivity
 import com.iyiyasa.android.base.activity.BaseSlideActivity
 import com.iyiyasa.android.base.viewmodel.BaseViewModel
 import com.iyiyasa.android.databinding.ActivityHomeBinding
 import com.iyiyasa.android.ui.barcode.BarcodeActivity
+import com.iyiyasa.android.ui.barcode.model.BarcodeResponse
+import com.iyiyasa.android.ui.home.fragment.AddCarcodeFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
@@ -29,12 +30,23 @@ class HomeActivity : BaseSlideActivity<ActivityHomeBinding>(R.layout.activity_ho
 
     override fun bindScreen() {
         dataBinding.viewModel = viewModel
-        dataBinding.activity=this
+        dataBinding.activity = this
     }
 
     fun openBarcode() {
         startForResult.launch(Intent(this, BarcodeActivity::class.java))
         overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left)
+    }
+
+    private fun openAddBarcode(barcodeResponse: BarcodeResponse) {
+        var addBarode =
+            AddCarcodeFragment.newInstance(barcodeResponse,
+                object : AddCarcodeFragment.ListenerAddProduct {
+                    override fun clickAddProduct(item: BarcodeResponse) {
+
+                    }
+                })
+        addBarode.showBottomSheet(supportFragmentManager)
     }
 
     private val startForResult =

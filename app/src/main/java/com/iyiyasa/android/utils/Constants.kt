@@ -39,4 +39,8 @@ object Constants {
         val IOS_BUNDLE_ID = "com.sweaters.iosbeta"
     }
 
+    object AddProduct {
+        val ADD_PRODUCT = "ADD_PRODUCT"
+    }
+
 }

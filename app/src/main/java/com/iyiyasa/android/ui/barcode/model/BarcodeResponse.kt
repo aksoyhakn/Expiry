@@ -15,5 +15,6 @@ import kotlinx.android.parcel.Parcelize
 data class BarcodeResponse(
     @SerializedName("ID") val id: Int?,
     @SerializedName("dc_BarcodeId") val dc_BarcodeId: String?,
-    @SerializedName("dc_ProductName") val dc_ProductName: String?
+    @SerializedName("dc_ProductName") val dc_ProductName: String?,
+    @SerializedName("dc_ProductDate") val dc_ProductDate: String?
 ) : BaseResponse(),Parcelable

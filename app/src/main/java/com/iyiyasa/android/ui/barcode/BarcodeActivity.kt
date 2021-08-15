@@ -54,6 +54,11 @@ class BarcodeActivity : BaseSlideActivity<ActivityBarcodeBinding>(R.layout.activ
 
     override fun handleResult(rawResult: Result?) {
         Log.d("TEST",rawResult?.text.toString())
+      /*  val data = Intent().apply {
+            putExtra(RESULT_ID, id)
+            putExtra(RESULT_NAME, name)
+        }
+        setResult(RESULT_OK, data)*/
         setResult(Activity.RESULT_OK, intent)
         finish()
     }
