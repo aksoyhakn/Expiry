@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.iyiyasa.android.data.persistence.entity.Data" />
+
+    </data>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+
+            <com.tistory.zladnrms.roundablelayout.RoundableLayout
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="16dp"
+                app:backgroundColor="@color/antrasit"
+                app:cornerLeftSide="30dp"
+                app:cornerRightSide="30dp">
+
+            </com.tistory.zladnrms.roundablelayout.RoundableLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="16dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/dm_sans"
+                android:letterSpacing="0.02"
+                android:lineSpacingExtra="8sp"
+                android:text="@{item.dc_ProductName}"
+                android:textColor="@color/antrasit"
+                android:textSize="16sp"
+                android:textStyle="normal" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="16dp"
+            android:background="@color/solitude" />
+
+    </LinearLayout>
+</layout>

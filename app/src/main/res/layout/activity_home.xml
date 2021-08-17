@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
 
     <data>
 
@@ -11,6 +12,11 @@
         <variable
             name="activity"
             type="com.iyiyasa.android.ui.home.HomeActivity" />
+
+        <variable
+            name="listenerProduct"
+            type="com.iyiyasa.android.ui.home.adapter.ShowProductAdapter.ListenerShowProductData" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,16 +25,40 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/tv_barcode"
+            android:id="@+id/tv_addproduct"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Barcode"
-            onSafeClick="@{()->activity.openBarcode()}"
+            android:text="Ekle"
             android:textSize="30dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_barcode"
+            onSafeClick="@{()->activity.openBarcode()}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Barcode"
+            android:textSize="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_addproduct" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_course"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            android:overScrollMode="never"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@+id/tv_barcode"
+            bind:setShowProductData="@{viewModel.item}"
+            bind:setShowProductDataListener="@{listenerProduct}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

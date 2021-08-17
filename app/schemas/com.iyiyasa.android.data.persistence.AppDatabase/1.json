@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "2d3637d1435f1e8394bd1966873712e7",
+    "identityHash": "4dd6b4d3bbf886fae00a4666dd5da47c",
     "entities": [
       {
         "tableName": "Data",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`ID` INTEGER PRIMARY KEY AUTOINCREMENT, `dc_BarcodeId` TEXT NOT NULL, `dc_ProductName` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`ID` INTEGER PRIMARY KEY AUTOINCREMENT, `dc_BarcodeId` TEXT NOT NULL, `dc_ProductName` TEXT NOT NULL, `dc_ProductDate` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "ID",
@@ -25,6 +25,12 @@
             "columnName": "dc_ProductName",
             "affinity": "TEXT",
             "notNull": true
+          },
+          {
+            "fieldPath": "dc_ProductDate",
+            "columnName": "dc_ProductDate",
+            "affinity": "TEXT",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -40,7 +46,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '2d3637d1435f1e8394bd1966873712e7')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '4dd6b4d3bbf886fae00a4666dd5da47c')"
     ]
   }
 }

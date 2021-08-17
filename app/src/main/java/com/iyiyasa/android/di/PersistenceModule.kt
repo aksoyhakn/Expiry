@@ -48,7 +48,7 @@ object PersistenceModule {
     ): AppDatabase {
         return Room
             .databaseBuilder(application, AppDatabase::class.java, Constants.App.DB_NAME)
-            .fallbackToDestructiveMigration()
+            .allowMainThreadQueries()
             .build()
     }
 
