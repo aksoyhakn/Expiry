@@ -7,15 +7,15 @@
 
         <variable
             name="viewModel"
-            type="com.iyiyasa.android.ui.home.HomeViewModel" />
+            type="com.afgdevlab.expirydate.ui.home.HomeViewModel" />
 
         <variable
             name="activity"
-            type="com.iyiyasa.android.ui.home.HomeActivity" />
+            type="com.afgdevlab.expirydate.ui.home.HomeActivity" />
 
         <variable
             name="listenerProduct"
-            type="com.iyiyasa.android.ui.home.adapter.ShowProductAdapter.ListenerShowProductData" />
+            type="com.afgdevlab.expirydate.ui.home.adapter.ShowProductAdapter.ListenerShowProductData" />
 
     </data>
 

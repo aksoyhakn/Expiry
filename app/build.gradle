@@ -16,13 +16,13 @@ apply plugin: 'com.google.firebase.crashlytics'
 android {
     compileSdkVersion versions.compileSdk
     defaultConfig {
-        applicationId "com.iyiyasa.android"
+        applicationId "com.afgdevlab.expirydate"
         minSdkVersion versions.minSdk
         targetSdkVersion versions.compileSdk
         versionCode versions.versionCode
         versionName versions.versionName
         vectorDrawables.useSupportLibrary = true
-        testInstrumentationRunner "com.iyiyasa.android.AppTestRunner"
+        testInstrumentationRunner "com.afgdevlab.expirydate.AppTestRunner"
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments += ["room.schemaLocation": "$projectDir/schemas".toString()]
@@ -119,13 +119,13 @@ android {
     productFlavors {
 
         liveFlavor {
-            resValue "string", "app_name", "İyiyasa"
-            applicationId "com.iyiyasa.android"
-            android.defaultConfig.applicationId "com.iyiyasa.android"
+            resValue "string", "app_name", "Expiry"
+            applicationId "com.afgdevlab.expirydate"
+            android.defaultConfig.applicationId "com.afgdevlab.expirydate"
             ext.betaDistributionReleaseNotes = "BetaReleaseNote"
             ext.betaDistributionGroupAliases = "qa,managers,android-developers"
             ext.betaDistributionNotifications = true
-            buildConfigField("String", "BASE_X_CLIENT_ID", '"com.iyiyasa.android"')
+            buildConfigField("String", "BASE_X_CLIENT_ID", '"com.afgdevlab.expirydate"')
             buildConfigField("String", "BASE_X_CLIENT_SECRET", '"0e222daf-4b15-44dc-bf56-b5edfdacc800"')
             buildConfigField("String", "BASE_URL", "\"https://www.netdata.com/JSON/\"")
             buildConfigField("String", "APPCENTER_KEY", '"f4f5bbde-d4a6-499b-83e1-8c036c06b3a1"')
@@ -133,13 +133,13 @@ android {
         }
 
         devFlavor {
-            resValue "string", "app_name", "İyiyasa - dev"
-            applicationId "com.iyiyasa.android.ldsDev"
-            android.defaultConfig.applicationId "com.iyiyasa.android.ldsDev"
+            resValue "string", "app_name", "Expiry"
+            applicationId "com.afgdevlab.expirydate.ldsDev"
+            android.defaultConfig.applicationId "com.afgdevlab.expirydate.ldsDev"
             ext.betaDistributionReleaseNotes = "liveReleaseNote"
             ext.betaDistributionGroupAliases = "qa,managers,android-developers"
             ext.betaDistributionNotifications = true
-            buildConfigField("String", "BASE_X_CLIENT_ID", '"com.iyiyasa.android"')
+            buildConfigField("String", "BASE_X_CLIENT_ID", '"com.afgdevlab.expirydate"')
             buildConfigField("String", "BASE_X_CLIENT_SECRET", '"0e222daf-4b15-44dc-bf56-b5edfdacc800"')
             buildConfigField("String", "BASE_URL", "\"https://www.netdata.com/JSON/\"")
             buildConfigField("String", "APPCENTER_KEY", '"eb07d35a-6877-4a21-9337-1c36e01a47ba"')

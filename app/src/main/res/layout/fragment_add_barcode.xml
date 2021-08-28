@@ -6,11 +6,11 @@
 
         <variable
             name="viewModel"
-            type="com.iyiyasa.android.ui.home.fragment.AddCarcodeFragmentViewModel" />
+            type="com.afgdevlab.expirydate.ui.home.fragment.AddCarcodeFragmentViewModel" />
 
         <variable
             name="fragment"
-            type="com.iyiyasa.android.ui.home.fragment.AddCarcodeFragment" />
+            type="com.afgdevlab.expirydate.ui.home.fragment.AddCarcodeFragment" />
 
 
     </data>

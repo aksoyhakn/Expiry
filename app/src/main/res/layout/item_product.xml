@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="com.iyiyasa.android.data.persistence.entity.Data" />
+            type="com.afgdevlab.expirydate.data.persistence.entity.Data" />
 
         <variable
             name="isLastData"

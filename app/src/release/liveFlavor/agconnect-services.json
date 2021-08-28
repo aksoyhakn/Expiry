@@ -17,7 +17,7 @@
 		"project_id":"736430079245704733",
 		"app_id":"104036285",
 		"api_key":"CgB6e3x9GQYyTLoZvF9QxreeE+v9d375hrP63uaVyoLJhDKDwr22X0JRgPF64kRAek1mkAZGX4hbkVXaRyVCAPoq",
-		"package_name":"com.iyiyasa.android"
+		"package_name":"com.afgdevlab.expirydate"
 	},
 	"oauth_client":{
 		"client_id":"104036285",
@@ -25,17 +25,17 @@
 	},
 	"app_info":{
 		"app_id":"104036285",
-		"package_name":"com.iyiyasa.android"
+		"package_name":"com.afgdevlab.expirydate"
 	},
 	"configuration_version":"3.0",
 	"appInfos":[
 		{
-			"package_name":"com.iyiyasa.android",
+			"package_name":"com.afgdevlab.expirydate",
 			"client":{
 				"app_id":"104036285"
 			},
 			"app_info":{
-				"package_name":"com.iyiyasa.android",
+				"package_name":"com.afgdevlab.expirydate",
 				"app_id":"104036285"
 			},
 			"oauth_client":{

@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:421899971669:android:5012d3d472e0536cf2f8dc",
         "android_client_info": {
-          "package_name": "com.iyiyasa.android.ldsDev"
+          "package_name": "com.afgdevlab.expirydate.ldsDev"
         }
       },
       "oauth_client": [
@@ -17,7 +17,7 @@
           "client_id": "421899971669-nrihgqchsu7epnb7mojqj8l8qhk30gvn.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.iyiyasa.android.ldsDev",
+            "package_name": "com.afgdevlab.expirydate.ldsDev",
             "certificate_hash": "b7ceb7261ffbd79d8f72cb42a51387ad7ea9b8fe"
           }
         },

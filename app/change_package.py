@@ -6,8 +6,8 @@ initial_folder = os.path.abspath(".")
 package_separator = "."
 
 #arguments
-old_package = "com.sweaters.android"
-new_package = "com.iyiyasa.android"
+old_package = "com.iyiyasa.android"
+new_package = "com.afgdevlab.expirydate"
 proguard = None
 
 def charge_proguard():
