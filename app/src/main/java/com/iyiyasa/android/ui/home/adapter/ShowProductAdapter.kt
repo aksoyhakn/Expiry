@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.iyiyasa.android.R
 import com.iyiyasa.android.data.persistence.entity.Data
@@ -45,6 +46,12 @@ class ShowProductAdapter(
         }
     }
 
+    fun deletePosition(position:Int){
+        listener.clickProductDelete(products.get(position))
+        products.removeAt(position)
+        notifyItemRemoved(position)
+    }
+
 
     class ShowProductViewHolder(
         var binding: ItemProductBinding,
@@ -81,11 +88,25 @@ class ShowProductAdapter(
             if (product.isNotNull()) {
                 view.adapter =
                     ShowProductAdapter((product as ArrayList<Data>), listener)
+
+                view.adapter =
+                    ShowProductAdapter(product as ArrayList<Data>, listener)
+                val swipeHandler = object : SwipeToDeleteCallback(view.context) {
+                    override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                        val adapter = view.adapter as ShowProductAdapter
+                        adapter.deletePosition(viewHolder.adapterPosition)
+                    }
+                }
+                val itemTouchHelper = ItemTouchHelper(swipeHandler)
+                itemTouchHelper.attachToRecyclerView(view)
             }
+
+
         }
     }
 
     interface ListenerShowProductData {
         fun clickProduct(item: Data)
+        fun clickProductDelete(item: Data)
     }
 }

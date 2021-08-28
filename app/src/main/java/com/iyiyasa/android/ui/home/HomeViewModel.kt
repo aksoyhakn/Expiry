@@ -22,11 +22,19 @@ class HomeViewModel @ViewModelInject constructor(
 
     var item = ObservableField(appDatabase.iyiyasaDAO().getData() as ArrayList<Data>)
     var product = SingleLiveData<Data>()
+    var productDelete = SingleLiveData<Data>()
 
     fun add(data: Data?) {
         data.notNull {
             appDatabase.iyiyasaDAO().insertData(it)
             product.value = it
+        }
+    }
+
+    fun delete(data:Data?){
+        data.notNull {
+            appDatabase.iyiyasaDAO().deleteData(it)
+            productDelete.value = it
         }
     }
 }

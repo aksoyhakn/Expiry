@@ -37,15 +37,22 @@ class HomeActivity : BaseSlideActivity<ActivityHomeBinding>(R.layout.activity_ho
         dataBinding.activity = this
         dataBinding.listenerProduct = this
 
-        addedProduct()
+        listenerProduct()
     }
 
-    private fun addedProduct() {
+    private fun listenerProduct() {
         viewModel.product.observe(this, Observer {
             (dataBinding.rvCourse.adapter as? ShowProductAdapter)?.addProduct(it)
             handler(1000){
                 hideLoading()
                 showDialog(resString(R.string.home_added_product),true)
+            }
+        })
+
+        viewModel.productDelete.observe(this, Observer {
+            handler(1000){
+                hideLoading()
+                showDialog(resString(R.string.home_delete_product),true)
             }
         })
     }
@@ -79,6 +86,11 @@ class HomeActivity : BaseSlideActivity<ActivityHomeBinding>(R.layout.activity_ho
 
     override fun clickProduct(item: Data) {
 
+    }
+
+    override fun clickProductDelete(item: Data) {
+        showLoading()
+        viewModel.delete(item)
     }
 
 }
