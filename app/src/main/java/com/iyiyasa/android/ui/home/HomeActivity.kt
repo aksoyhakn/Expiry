@@ -10,9 +10,7 @@ import com.iyiyasa.android.base.activity.BaseSlideActivity
 import com.iyiyasa.android.base.viewmodel.BaseViewModel
 import com.iyiyasa.android.data.persistence.entity.Data
 import com.iyiyasa.android.databinding.ActivityHomeBinding
-import com.iyiyasa.android.extensions.handler
-import com.iyiyasa.android.extensions.resString
-import com.iyiyasa.android.extensions.showDialog
+import com.iyiyasa.android.extensions.*
 import com.iyiyasa.android.ui.home.adapter.ShowProductAdapter
 import com.iyiyasa.android.ui.home.fragment.AddCarcodeFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -43,16 +41,16 @@ class HomeActivity : BaseSlideActivity<ActivityHomeBinding>(R.layout.activity_ho
     private fun listenerProduct() {
         viewModel.product.observe(this, Observer {
             (dataBinding.rvCourse.adapter as? ShowProductAdapter)?.addProduct(it)
-            handler(1000){
+            handler(1000) {
                 hideLoading()
-                showDialog(resString(R.string.home_added_product),true)
+                showDialog(resString(R.string.home_added_product), true)
             }
         })
 
         viewModel.productDelete.observe(this, Observer {
-            handler(1000){
+            handler(1000) {
                 hideLoading()
-                showDialog(resString(R.string.home_delete_product),true)
+                showDialog(resString(R.string.home_delete_product), true)
             }
         })
     }
@@ -84,8 +82,20 @@ class HomeActivity : BaseSlideActivity<ActivityHomeBinding>(R.layout.activity_ho
             }
         }
 
-    override fun clickProduct(item: Data) {
-
+    override fun clickProduct(item: Data, position: Int) {
+        showProductStatus {
+            item.notNull {
+                showLoading()
+                viewModel.update(it)
+                handler(1000) {
+                    hideLoading()
+                    (dataBinding.rvCourse.adapter as? ShowProductAdapter)?.updateProduct(
+                        position,
+                        it
+                    )
+                }
+            }
+        }
     }
 
     override fun clickProductDelete(item: Data) {

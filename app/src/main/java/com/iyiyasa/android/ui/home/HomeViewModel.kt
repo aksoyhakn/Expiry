@@ -5,7 +5,10 @@ import androidx.hilt.lifecycle.ViewModelInject
 import com.iyiyasa.android.base.viewmodel.BaseViewModel
 import com.iyiyasa.android.data.persistence.AppDatabase
 import com.iyiyasa.android.data.persistence.entity.Data
+import com.iyiyasa.android.extensions.dayOfMonth
+import com.iyiyasa.android.extensions.monthOfName
 import com.iyiyasa.android.extensions.notNull
+import com.iyiyasa.android.extensions.year
 import com.iyiyasa.android.utils.SingleLiveData
 import java.util.*
 
@@ -35,6 +38,19 @@ class HomeViewModel @ViewModelInject constructor(
         data.notNull {
             appDatabase.iyiyasaDAO().deleteData(it)
             productDelete.value = it
+        }
+    }
+
+    fun update(data:Data?){
+        data.notNull {
+            data?.isOpenProduct=true
+            data?.isOpenProductDate =  "${
+                String.format(
+                    "%02d",
+                    System.currentTimeMillis().dayOfMonth
+                )
+            } ${System.currentTimeMillis().monthOfName} ${System.currentTimeMillis().year}"
+            appDatabase.iyiyasaDAO().updateData(it)
         }
     }
 }

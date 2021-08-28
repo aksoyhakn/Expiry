@@ -13,15 +13,19 @@
             name="isLastData"
             type="Boolean" />
 
+        <variable
+            name="isOpenProduct"
+            type="Boolean" />
+
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:id="@+id/ll_product"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/hakan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -32,7 +36,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="16dp"
-                bind:lastDateControl="@{item.productDateControl}"
                 android:background="@drawable/ic_date1" />
 
 
@@ -68,8 +71,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:singleLine="true"
+                    bind:visibleIf="@{isOpenProduct}"
                     android:layout_marginTop="5dp"
-                    android:text="@{@string/home_product_open +` : `+ item.productDate}" />
+                    android:text="@{@string/home_product_open +` : `+ item.isOpenProductDate}" />
 
 
             </LinearLayout>

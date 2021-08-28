@@ -4,12 +4,14 @@ import android.content.Context
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.widget.ImageView
+import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
+import com.iyiyasa.android.R
 
 fun ImageView.loadImage(
     context: Context,
@@ -111,4 +113,16 @@ fun ImageView.loadGlideImageCircleCropCache(
 
         })
         .into(this)
+}
+
+
+fun ImageView.lastDateControl(countDate: String) {
+    countDate.notNull {
+        when(it){
+            "1"-> this.setBackgroundResource(R.drawable.ic_date4)
+            "2"-> this.setBackgroundResource(R.drawable.ic_date3)
+            "3"-> this.setBackgroundResource(R.drawable.ic_date2)
+            else-> this.setBackgroundResource(R.drawable.ic_date1)
+        }
+    }
 }

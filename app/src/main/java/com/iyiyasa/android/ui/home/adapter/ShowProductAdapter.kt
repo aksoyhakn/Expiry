@@ -10,6 +10,7 @@ import com.iyiyasa.android.R
 import com.iyiyasa.android.data.persistence.entity.Data
 import com.iyiyasa.android.databinding.ItemProductBinding
 import com.iyiyasa.android.extensions.isNotNull
+import com.iyiyasa.android.extensions.lastDateControl
 import com.iyiyasa.android.extensions.notNull
 
 
@@ -26,8 +27,8 @@ class ShowProductAdapter(
                 parent,
                 false
             )
-        ) { item ->
-            listener.clickProduct(item)
+        ) { item,position ->
+            listener.clickProduct(item,position)
         }
     }
 
@@ -52,10 +53,17 @@ class ShowProductAdapter(
         notifyItemRemoved(position)
     }
 
+    fun updateProduct(position: Int,product: Data?) {
+        product.let {
+            notifyItemChanged(position,product)
+            notifyDataSetChanged()
+        }
+    }
+
 
     class ShowProductViewHolder(
         var binding: ItemProductBinding,
-        val onClick: (Data) -> Unit
+        val onClick: (Data,Int) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
 
         var isLastData = false
@@ -64,12 +72,28 @@ class ShowProductAdapter(
                 field = value
             }
 
+        var isOpenProduct = false
+            set(value) {
+                binding.isOpenProduct = value
+                field = value
+            }
+
+
         fun bindData(product: Data, position: Int, lastData: Boolean) {
             isLastData = lastData
+            isOpenProduct=product.isOpenProduct ?: false
+            
+            if(product.isOpenProduct == true){
+                binding.ivIcon.setBackgroundResource(R.drawable.ic_date4)
+            }else{
+                binding.ivIcon.lastDateControl(product.productDateControl!!)
+            }
             binding.item = product
 
-            binding.ivEndCon.setOnClickListener {
-                onClick(product)
+            binding.llProduct.setOnClickListener {
+                if(product.isOpenProduct != true){
+                    onClick(product,position)
+                }
             }
 
             binding.executePendingBindings()
@@ -106,7 +130,7 @@ class ShowProductAdapter(
     }
 
     interface ListenerShowProductData {
-        fun clickProduct(item: Data)
+        fun clickProduct(item: Data,position:Int)
         fun clickProductDelete(item: Data)
     }
 }

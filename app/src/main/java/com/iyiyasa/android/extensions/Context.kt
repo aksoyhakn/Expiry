@@ -16,6 +16,7 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.iyiyasa.android.R
 import com.iyiyasa.android.databinding.DialogDefaultBinding
+import com.iyiyasa.android.databinding.DialogOpenProductBinding
 import com.iyiyasa.android.utils.Constants.Camera.REQUEST_CODE_CAMERA_PERMISSION
 import pub.devrel.easypermissions.EasyPermissions
 import pub.devrel.easypermissions.PermissionRequest
@@ -180,6 +181,30 @@ fun Context.showDialog(mesaj:String,isSuccess: Boolean? = false) {
 
         binding.isSuccess=isSuccess
         binding.mesaj=mesaj
+    }
+}
+
+
+
+
+fun Context.showProductStatus(listener: () -> Unit) {
+    this.notNull {
+        val dialog = Dialog(it)
+        val binding: DialogOpenProductBinding =
+            DataBindingUtil.inflate(dialog.layoutInflater, R.layout.dialog_open_product, null, false)
+
+        dialog.setCancelable(false)
+        dialog.setContentView(binding.root)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.window?.attributes?.windowAnimations = R.style.DialogAnimation
+        dialog.setCanceledOnTouchOutside(true)
+        dialog.show()
+
+        binding.llOpenpackage.setRXSafeOnClickListener {
+            dialog.dismiss()
+            listener()
+        }
+
     }
 }
 
