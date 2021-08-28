@@ -32,6 +32,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="16dp"
+                bind:lastDateControl="@{item.productDateControl}"
                 android:background="@drawable/ic_date1" />
 
 
@@ -56,8 +57,20 @@
                     style="@style/ExpiryHead2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:singleLine="true"
                     android:layout_marginTop="5dp"
-                    android:text="@{item.productName}" />
+                    android:text="@{@string/home_product_last_date +` : `+ item.productDate}" />
+
+                <TextView
+                    android:id="@+id/tv_openpackage"
+                    style="@style/ExpiryHead2"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:layout_marginTop="5dp"
+                    android:text="@{@string/home_product_open +` : `+ item.productDate}" />
+
 
             </LinearLayout>
 

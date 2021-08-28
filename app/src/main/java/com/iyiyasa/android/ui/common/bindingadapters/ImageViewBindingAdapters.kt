@@ -61,4 +61,18 @@ object ImageViewBindingAdapters {
             view.setColorFilter(view.context.resColor(R.color.colorPrimary), PorterDuff.Mode.SRC_IN)
         }
     }
+
+
+    @JvmStatic
+    @BindingAdapter("bind:lastDateControl")
+    fun lastDateControl(view: ImageView, countDate: String) {
+        countDate.notNull {
+            when(it){
+                "1"-> view.setBackgroundResource(R.drawable.ic_date4)
+                "2"-> view.setBackgroundResource(R.drawable.ic_date3)
+                "3"-> view.setBackgroundResource(R.drawable.ic_date2)
+                else-> view.setBackgroundResource(R.drawable.ic_date1)
+            }
+        }
+    }
 }

@@ -2,6 +2,7 @@ package com.iyiyasa.android.ui.home.fragment
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
+import android.util.Log
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -71,7 +72,8 @@ class AddCarcodeFragment(
                 Random.nextInt(),
                 viewModel.barcode.get() ?: "",
                 viewModel.name.get() ?: "",
-                viewModel.date.get() ?: ""
+                viewModel.date.get() ?: "",
+                viewModel.lastDateControl.get() ?: "4"
             )
         )
         dismissAllowingStateLoss()
@@ -87,6 +89,8 @@ class AddCarcodeFragment(
             startCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
             startCalendar.set(Calendar.HOUR_OF_DAY, System.currentTimeMillis().hourOfDay)
             startCalendar.set(Calendar.MINUTE, System.currentTimeMillis().minuteOfHour)
+
+            viewModel.lastDateControl.set((startCalendar.time.time - System.currentTimeMillis()).dayOfMonth.toString())
 
             dataBinding.edProductdate.setText(
                 "${

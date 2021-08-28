@@ -19,5 +19,6 @@ data class Data(
     @ColumnInfo(name = "id") val ID: Int? = null,
     @ColumnInfo(name = "productBarcodeID") val productBarcodeID: String,
     @ColumnInfo(name = "productName") val productName: String,
-    @ColumnInfo(name = "productDate") val productDate: String
+    @ColumnInfo(name = "productDate") val productDate: String,
+    @ColumnInfo(name = "productDateControl") val productDateControl: String?
 ) : Parcelable
