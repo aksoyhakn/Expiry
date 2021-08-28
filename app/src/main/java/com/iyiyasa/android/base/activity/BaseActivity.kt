@@ -75,7 +75,7 @@ abstract class BaseActivity<T : ViewDataBinding>(
         this.initStatusBar()
     }
 
-    private fun showLoading(){
+    fun showLoading(){
         hideLoading()
         activityLoading.isNull {
             activityLoading = LottieProgressDialog(this)
@@ -83,7 +83,7 @@ abstract class BaseActivity<T : ViewDataBinding>(
         activityLoading?.show()
     }
 
-    private fun hideLoading(){
+    fun hideLoading(){
         activityLoading.notNull { it.cancel() }
     }
 

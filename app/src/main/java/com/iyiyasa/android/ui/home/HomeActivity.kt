@@ -10,6 +10,9 @@ import com.iyiyasa.android.base.activity.BaseSlideActivity
 import com.iyiyasa.android.base.viewmodel.BaseViewModel
 import com.iyiyasa.android.data.persistence.entity.Data
 import com.iyiyasa.android.databinding.ActivityHomeBinding
+import com.iyiyasa.android.extensions.handler
+import com.iyiyasa.android.extensions.resString
+import com.iyiyasa.android.extensions.showDialog
 import com.iyiyasa.android.ui.home.adapter.ShowProductAdapter
 import com.iyiyasa.android.ui.home.fragment.AddCarcodeFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -40,6 +43,10 @@ class HomeActivity : BaseSlideActivity<ActivityHomeBinding>(R.layout.activity_ho
     private fun addedProduct() {
         viewModel.product.observe(this, Observer {
             (dataBinding.rvCourse.adapter as? ShowProductAdapter)?.addProduct(it)
+            handler(1000){
+                hideLoading()
+                showDialog(resString(R.string.home_added_product),true)
+            }
         })
     }
 
@@ -55,6 +62,7 @@ class HomeActivity : BaseSlideActivity<ActivityHomeBinding>(R.layout.activity_ho
         var addBarode = AddCarcodeFragment.newInstance(data,
             object : AddCarcodeFragment.ListenerAddProduct {
                 override fun clickAddProduct(item: Data) {
+                    showLoading()
                     viewModel.add(item)
                 }
             })

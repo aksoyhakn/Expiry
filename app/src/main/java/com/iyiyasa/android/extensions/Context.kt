@@ -2,15 +2,20 @@ package com.iyiyasa.android.extensions
 
 import android.Manifest
 import android.app.Activity
+import android.app.Dialog
 import android.content.Context
 import android.content.res.Configuration
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Handler
 import android.os.Looper
 import android.text.SpannableString
 import android.view.*
 import androidx.core.content.ContextCompat
+import androidx.databinding.DataBindingUtil
 import com.iyiyasa.android.R
+import com.iyiyasa.android.databinding.DialogDefaultBinding
 import com.iyiyasa.android.utils.Constants.Camera.REQUEST_CODE_CAMERA_PERMISSION
 import pub.devrel.easypermissions.EasyPermissions
 import pub.devrel.easypermissions.PermissionRequest
@@ -157,5 +162,24 @@ fun Activity.requestCameraPermission() {
             .setTheme(R.style.AlertDialogTheme)
             .build()
     )
+}
+
+
+fun Context.showDialog(mesaj:String,isSuccess: Boolean? = false) {
+    this.notNull {
+        val dialog = Dialog(it)
+        val binding: DialogDefaultBinding =
+            DataBindingUtil.inflate(dialog.layoutInflater, R.layout.dialog_default, null, false)
+
+        dialog.setCancelable(false)
+        dialog.setContentView(binding.root)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.window?.attributes?.windowAnimations = R.style.DialogAnimation
+        dialog.setCanceledOnTouchOutside(true)
+        dialog.show()
+
+        binding.isSuccess=isSuccess
+        binding.mesaj=mesaj
+    }
 }
 
