@@ -83,7 +83,6 @@
             app:layout_constraintStart_toStartOf="@+id/iv_productname"
             app:layout_constraintTop_toBottomOf="@+id/iv_productdate" />
 
-
         <Space
             android:layout_width="match_parent"
             android:id="@+id/space"
@@ -93,7 +92,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_height="50dp"/>
-
 
     </LinearLayout>
 

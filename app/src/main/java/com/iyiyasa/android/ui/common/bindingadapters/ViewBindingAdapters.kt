@@ -33,4 +33,12 @@ object ViewBindingAdapters {
             listener.onClick(view)
         }
     }
+
+    @JvmStatic
+    @BindingAdapter("onSafeDebounceClick")
+    fun onSafeDebounceClick(view: View, listener: View.OnClickListener) {
+        view.setOnClickListener {
+            listener.onClick(view)
+        }
+    }
 }

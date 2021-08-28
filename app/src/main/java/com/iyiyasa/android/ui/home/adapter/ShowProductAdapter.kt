@@ -60,6 +60,11 @@ class ShowProductAdapter(
         fun bindData(product: Data, position: Int, lastData: Boolean) {
             isLastData = lastData
             binding.item = product
+
+            binding.ivEndCon.setOnClickListener {
+                onClick(product)
+            }
+
             binding.executePendingBindings()
         }
     }

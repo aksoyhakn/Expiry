@@ -1,5 +1,7 @@
 package com.iyiyasa.android.ui.home.fragment
 
+import android.annotation.SuppressLint
+import android.app.DatePickerDialog
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -8,11 +10,11 @@ import com.iyiyasa.android.base.bottomsheet.BaseBottomSheetDialog
 import com.iyiyasa.android.base.viewmodel.BaseViewModel
 import com.iyiyasa.android.data.persistence.entity.Data
 import com.iyiyasa.android.databinding.FragmentAddBarcodeBinding
-import com.iyiyasa.android.extensions.notNull
-import com.iyiyasa.android.extensions.setBottomSheetState
+import com.iyiyasa.android.extensions.*
 import com.iyiyasa.android.utils.Constants
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import java.util.*
 import kotlin.random.Random
 
 /**
@@ -25,6 +27,8 @@ import kotlin.random.Random
 class AddCarcodeFragment(
     var listener: ListenerAddProduct
 ) : BaseBottomSheetDialog<FragmentAddBarcodeBinding>(R.layout.fragment_add_barcode) {
+
+    var startCalendar: Calendar = Calendar.getInstance()
 
     companion object {
         fun newInstance(
@@ -71,6 +75,39 @@ class AddCarcodeFragment(
             )
         )
         dismissAllowingStateLoss()
+    }
+
+    @SuppressLint("SetTextI18n")
+    fun clickDate(){
+
+        var dateListener = DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
+
+            startCalendar.set(Calendar.YEAR, year)
+            startCalendar.set(Calendar.MONTH, month)
+            startCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+            startCalendar.set(Calendar.HOUR_OF_DAY, System.currentTimeMillis().hourOfDay)
+            startCalendar.set(Calendar.MINUTE, System.currentTimeMillis().minuteOfHour)
+
+            dataBinding.edProductdate.setText(
+                "${
+                    String.format(
+                        "%02d",
+                        startCalendar.time.time.dayOfMonth
+                    )
+                } ${startCalendar.time.time.monthOfName} $year"
+            )
+
+        }
+
+        var picker = DatePickerDialog(
+            requireContext(), R.style.datepicker, dateListener,
+            startCalendar.get(Calendar.YEAR),
+            startCalendar.get(Calendar.MONTH),
+            startCalendar.get(Calendar.DAY_OF_MONTH)
+        )
+
+        picker.datePicker.minDate = System.currentTimeMillis()
+        picker.show()
     }
 
     interface ListenerAddProduct {
