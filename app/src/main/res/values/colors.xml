@@ -7,6 +7,8 @@
 
 
     <!-- style - color -->
+    <color name="background">#E5E5E5</color>
+    <color name="expiry">#21BF73</color>
     <color name="antrasit">#242836</color>
     <color name="antrasit_6">#0F242836</color>
     <color name="antrasit_50">#80242836</color>

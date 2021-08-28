@@ -8,4 +8,20 @@
 
     <!-- Camera Permission-->
 
+    <!-- Home-->
+    <string name="home_expiry">Expiry</string>
+    <string name="home_expiry_info">Kullanma tarihini\nKontrol altına al!</string>
+    <string name="home_added_product">Ürün Başarıyla Eklendi.</string>
+    <string name="home_add_product">Ürün Ekle</string>
+    <string name="home_barcode">Barkod</string>
+    <string name="home_product_name">Ürün Adı</string>
+    <string name="home_product_last_date">Son Kullanma Tarihi</string>
+    <string name="home_product_last_date_info">Ürünün üzerindeki son kullanma tarihi giriniz.</string>
+    <string name="home_open_package">Paketi Aç</string>
+    <string name="home_delete">Sil</string>
+    <string name="home_not_add_product">Ürün Eklenemedi.</string>
+    <string name="home_delete_product">Ürün Başarıyla Silindi.</string>
+    <string name="home_info_product">Size hatırlatacağız</string>
+    <!-- Home -->
+
 </resources>
