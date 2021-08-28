@@ -38,8 +38,7 @@ class HomeActivity : BaseSlideActivity<ActivityHomeBinding>(R.layout.activity_ho
     }
 
     fun openBarcode() {
-        startForResult.launch(Intent(this, BarcodeActivity::class.java))
-        overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left)
+        openAddBarcode()
     }
 
     fun openAddBarcode(barcodeResponse: BarcodeResponse? = null) {

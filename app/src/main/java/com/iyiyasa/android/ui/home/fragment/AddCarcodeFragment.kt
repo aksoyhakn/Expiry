@@ -51,8 +51,8 @@ class AddCarcodeFragment(
         setBottomSheetState(BottomSheetBehavior.STATE_EXPANDED)
 
         (arguments?.getParcelable<BarcodeResponse>(Constants.AddProduct.ADD_PRODUCT)).notNull {
-            dataBinding.edBarcode.setText(it.dc_BarcodeId)
-            dataBinding.edProduct.setText(it.dc_ProductName)
+            dataBinding.edProductname.setText(it.dc_BarcodeId)
+            dataBinding.edProductdate.setText(it.dc_ProductName)
         }
 
     }

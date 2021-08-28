@@ -23,6 +23,7 @@
     <string name="home_not_add_product">Ürün Eklenemedi.</string>
     <string name="home_delete_product">Ürün Başarıyla Silindi.</string>
     <string name="home_info_product">Size hatırlatacağız</string>
+    <string name="home_product_save">Kaydet</string>
     <!-- Home -->
 
 </resources>
