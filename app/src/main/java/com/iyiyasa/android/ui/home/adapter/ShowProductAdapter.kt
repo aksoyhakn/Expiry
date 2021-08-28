@@ -32,7 +32,7 @@ class ShowProductAdapter(
     override fun getItemCount(): Int = shopLinks.size
 
     override fun onBindViewHolder(holder: ShoppingViewHolder, position: Int) {
-        holder.bindData(shopLinks[position], position)
+        holder.bindData(shopLinks[position], position,(shopLinks.size - 1 == position))
     }
 
 
@@ -41,7 +41,14 @@ class ShowProductAdapter(
         val onClick: (Data) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bindData(product: Data, position: Int) {
+        var isLastData = false
+            set(value) {
+                binding.isLastData = value
+                field = value
+            }
+
+        fun bindData(product: Data, position: Int, lastData: Boolean) {
+            isLastData=lastData
             binding.item=product
             binding.executePendingBindings()
         }

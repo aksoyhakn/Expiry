@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
 
     <data>
 
@@ -8,8 +9,11 @@
             name="item"
             type="com.iyiyasa.android.data.persistence.entity.Data" />
 
-    </data>
+        <variable
+            name="isLastData"
+            type="Boolean" />
 
+    </data>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,43 +21,80 @@
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/hakan"
             android:layout_width="match_parent"
-            android:layout_height="60dp">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-
-            <com.tistory.zladnrms.roundablelayout.RoundableLayout
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center"
-                android:layout_marginStart="16dp"
-                app:backgroundColor="@color/antrasit"
-                app:cornerLeftSide="30dp"
-                app:cornerRightSide="30dp">
-
-            </com.tistory.zladnrms.roundablelayout.RoundableLayout>
-
-
-            <TextView
+            <ImageView
+                android:id="@+id/iv_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="16dp"
+                android:background="@drawable/ic_date1" />
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
                 android:layout_weight="1"
-                android:fontFamily="@font/dm_sans"
-                android:letterSpacing="0.02"
-                android:lineSpacingExtra="8sp"
-                android:text="@{item.dc_ProductName}"
-                android:textColor="@color/antrasit"
-                android:textSize="16sp"
-                android:textStyle="normal" />
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/iv_productname"
+                    style="@style/ExpiryHead3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="@{item.dc_ProductName}" />
+
+                <TextView
+                    android:id="@+id/iv_productdate"
+                    style="@style/ExpiryHead2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="@{item.dc_ProductDate}" />
+
+            </LinearLayout>
+
+
+            <ImageView
+                android:id="@+id/iv_endıcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/ic_info" />
 
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginHorizontal="16dp"
-            android:background="@color/solitude" />
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="10dp"
+            android:background="@color/solitude"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/iv_productname"
+            app:layout_constraintTop_toBottomOf="@+id/iv_productdate" />
+
+
+        <Space
+            android:layout_width="match_parent"
+            android:id="@+id/space"
+            android:visibility="gone"
+            bind:visibleIf="@{isLastData}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_height="50dp"/>
+
 
     </LinearLayout>
+
 </layout>

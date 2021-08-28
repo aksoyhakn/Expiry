@@ -15,6 +15,7 @@
     <string name="home_add_product">Ürün Ekle</string>
     <string name="home_barcode">Barkod</string>
     <string name="home_product_name">Ürün Adı</string>
+    <string name="home_product_search">Ürün Ara</string>
     <string name="home_product_last_date">Son Kullanma Tarihi</string>
     <string name="home_product_last_date_info">Ürünün üzerindeki son kullanma tarihi giriniz.</string>
     <string name="home_open_package">Paketi Aç</string>

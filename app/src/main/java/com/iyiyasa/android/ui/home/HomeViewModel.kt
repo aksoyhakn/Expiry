@@ -19,7 +19,7 @@ class HomeViewModel @ViewModelInject constructor(
     private val appDatabase: AppDatabase
 ) : BaseViewModel() {
 
-    var item = ObservableField<ArrayList<Data>>()
+    var item = ObservableField<ArrayList<Data>>(appDatabase.iyiyasaDAO().getData() as ArrayList<Data>)
 
     fun add() {
         appDatabase.iyiyasaDAO()
