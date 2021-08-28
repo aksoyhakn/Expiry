@@ -5,8 +5,9 @@ import androidx.hilt.lifecycle.ViewModelInject
 import com.iyiyasa.android.base.viewmodel.BaseViewModel
 import com.iyiyasa.android.data.persistence.AppDatabase
 import com.iyiyasa.android.data.persistence.entity.Data
+import com.iyiyasa.android.extensions.notNull
+import com.iyiyasa.android.utils.SingleLiveData
 import java.util.*
-import kotlin.random.Random
 
 
 /**
@@ -19,12 +20,13 @@ class HomeViewModel @ViewModelInject constructor(
     private val appDatabase: AppDatabase
 ) : BaseViewModel() {
 
-    var item = ObservableField<ArrayList<Data>>(appDatabase.iyiyasaDAO().getData() as ArrayList<Data>)
+    var item = ObservableField(appDatabase.iyiyasaDAO().getData() as ArrayList<Data>)
+    var product = SingleLiveData<Data>()
 
-    fun add() {
-        appDatabase.iyiyasaDAO()
-            .insertData(Data(null, Random.nextInt().toString(), "5449000011114", "COCA COLA 200ML"))
-        item.set(appDatabase.iyiyasaDAO().getData() as ArrayList<Data>)
+    fun add(data: Data?) {
+        data.notNull {
+            appDatabase.iyiyasaDAO().insertData(it)
+            product.value = it
+        }
     }
-
 }

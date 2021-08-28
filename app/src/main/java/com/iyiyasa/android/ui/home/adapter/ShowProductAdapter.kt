@@ -9,15 +9,16 @@ import com.iyiyasa.android.R
 import com.iyiyasa.android.data.persistence.entity.Data
 import com.iyiyasa.android.databinding.ItemProductBinding
 import com.iyiyasa.android.extensions.isNotNull
+import com.iyiyasa.android.extensions.notNull
 
 
 class ShowProductAdapter(
-    val shopLinks: ArrayList<Data>,
+    val products: ArrayList<Data>,
     val listener: ListenerShowProductData
-) : RecyclerView.Adapter<ShowProductAdapter.ShoppingViewHolder>() {
+) : RecyclerView.Adapter<ShowProductAdapter.ShowProductViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShoppingViewHolder {
-        return ShoppingViewHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShowProductViewHolder {
+        return ShowProductViewHolder(
             DataBindingUtil.inflate(
                 LayoutInflater.from(parent.context),
                 R.layout.item_product,
@@ -29,14 +30,23 @@ class ShowProductAdapter(
         }
     }
 
-    override fun getItemCount(): Int = shopLinks.size
+    override fun getItemCount(): Int = products.size
 
-    override fun onBindViewHolder(holder: ShoppingViewHolder, position: Int) {
-        holder.bindData(shopLinks[position], position,(shopLinks.size - 1 == position))
+    override fun onBindViewHolder(holder: ShowProductViewHolder, position: Int) {
+        holder.bindData(products[position], position, (products.size - 1 == position))
+    }
+
+    fun addProduct(product: Data?) {
+        product.let {
+            var previousSize = this.products.size
+            this.products.add(it!!)
+            notifyItemRangeInserted(previousSize, products.size)
+            notifyDataSetChanged()
+        }
     }
 
 
-    class ShoppingViewHolder(
+    class ShowProductViewHolder(
         var binding: ItemProductBinding,
         val onClick: (Data) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
@@ -48,8 +58,8 @@ class ShowProductAdapter(
             }
 
         fun bindData(product: Data, position: Int, lastData: Boolean) {
-            isLastData=lastData
-            binding.item=product
+            isLastData = lastData
+            binding.item = product
             binding.executePendingBindings()
         }
     }

@@ -1,17 +1,15 @@
 package com.iyiyasa.android.ui.home
 
 import android.app.Activity
-import android.content.Intent
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.lifecycle.Observer
 import com.iyiyasa.android.R
 import com.iyiyasa.android.base.activity.BaseSlideActivity
 import com.iyiyasa.android.base.viewmodel.BaseViewModel
 import com.iyiyasa.android.data.persistence.entity.Data
 import com.iyiyasa.android.databinding.ActivityHomeBinding
-import com.iyiyasa.android.ui.barcode.BarcodeActivity
-import com.iyiyasa.android.ui.barcode.model.BarcodeResponse
 import com.iyiyasa.android.ui.home.adapter.ShowProductAdapter
 import com.iyiyasa.android.ui.home.fragment.AddCarcodeFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -35,20 +33,31 @@ class HomeActivity : BaseSlideActivity<ActivityHomeBinding>(R.layout.activity_ho
         dataBinding.viewModel = viewModel
         dataBinding.activity = this
         dataBinding.listenerProduct = this
+
+        addedProduct()
+    }
+
+    private fun addedProduct() {
+        viewModel.product.observe(this, Observer {
+            (dataBinding.rvCourse.adapter as? ShowProductAdapter)?.addProduct(it)
+        })
     }
 
     fun openBarcode() {
         openAddBarcode()
+        /*
+         startForResult.launch(Intent(this, BarcodeActivity::class.java))
+        overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left)
+         */
     }
 
-    fun openAddBarcode(barcodeResponse: BarcodeResponse? = null) {
-        var addBarode =
-            AddCarcodeFragment.newInstance(barcodeResponse,
-                object : AddCarcodeFragment.ListenerAddProduct {
-                    override fun clickAddProduct(item: BarcodeResponse) {
-
-                    }
-                })
+    private fun openAddBarcode(data: Data? = null) {
+        var addBarode = AddCarcodeFragment.newInstance(data,
+            object : AddCarcodeFragment.ListenerAddProduct {
+                override fun clickAddProduct(item: Data) {
+                    viewModel.add(item)
+                }
+            })
         addBarode.showBottomSheet(supportFragmentManager)
     }
 
@@ -61,7 +70,7 @@ class HomeActivity : BaseSlideActivity<ActivityHomeBinding>(R.layout.activity_ho
         }
 
     override fun clickProduct(item: Data) {
-        viewModel.add()
+
     }
 
 }

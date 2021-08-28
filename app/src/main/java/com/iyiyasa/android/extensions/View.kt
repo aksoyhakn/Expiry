@@ -18,7 +18,9 @@ import android.view.ViewTreeObserver
 import android.view.WindowManager
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.AlphaAnimation
+import android.view.animation.AnimationUtils
 import android.view.animation.TranslateAnimation
+import com.iyiyasa.android.R
 import com.jakewharton.rxbinding2.view.RxView
 import java.util.concurrent.TimeUnit
 
@@ -147,8 +149,10 @@ fun View.removeOnDebouncedClickListener() {
 }
 
 fun View.setRXSafeOnClickListener(onClick: (View) -> Unit) {
-    RxView.clicks(this).throttleFirst(1000, TimeUnit.MILLISECONDS).subscribe {
-        onClick(this)
+    RxView.clicks(this).throttleFirst(200, TimeUnit.MILLISECONDS).subscribe {
+        zoomInAndOut {
+            onClick(this)
+        }
     }
 }
 
@@ -194,4 +198,22 @@ fun View.linearGradient(
     colorList: IntArray
 ) {
     this.background = GradientDrawable(orientation, colorList)
+}
+
+
+
+fun View.zoomInAndOut(
+    listener: () -> Unit
+) {
+    val animZoomIn = AnimationUtils.loadAnimation(this.context, R.anim.zoom_out)
+    this.startAnimation(animZoomIn)
+
+    this.context.handler(100) {
+        val animZoomOut = AnimationUtils.loadAnimation(this.context, R.anim.zoom_in)
+        this.startAnimation(animZoomOut)
+    }
+
+    this.context.handler(200) {
+        listener()
+    }
 }

@@ -6,10 +6,10 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.iyiyasa.android.R
 import com.iyiyasa.android.base.bottomsheet.BaseBottomSheetDialog
 import com.iyiyasa.android.base.viewmodel.BaseViewModel
+import com.iyiyasa.android.data.persistence.entity.Data
 import com.iyiyasa.android.databinding.FragmentAddBarcodeBinding
 import com.iyiyasa.android.extensions.notNull
 import com.iyiyasa.android.extensions.setBottomSheetState
-import com.iyiyasa.android.ui.barcode.model.BarcodeResponse
 import com.iyiyasa.android.utils.Constants
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -28,12 +28,12 @@ class AddCarcodeFragment(
 
     companion object {
         fun newInstance(
-            prroductBarcode: BarcodeResponse?,
+            product: Data?,
             listener: ListenerAddProduct
         ): AddCarcodeFragment {
             val fragment = AddCarcodeFragment(listener)
             val bundle = bundleOf(
-                Constants.AddProduct.ADD_PRODUCT to prroductBarcode,
+                Constants.AddProduct.ADD_PRODUCT to product,
             )
             fragment.arguments = bundle
             return fragment
@@ -50,19 +50,30 @@ class AddCarcodeFragment(
 
         setBottomSheetState(BottomSheetBehavior.STATE_EXPANDED)
 
-        (arguments?.getParcelable<BarcodeResponse>(Constants.AddProduct.ADD_PRODUCT)).notNull {
-            dataBinding.edProductname.setText(it.dc_BarcodeId)
-            dataBinding.edProductdate.setText(it.dc_ProductName)
+        (arguments?.getParcelable<Data>(Constants.AddProduct.ADD_PRODUCT)).notNull {
+            dataBinding.edProductname.setText(it.productName)
+            dataBinding.edProductdate.setText(it.productDate)
         }
 
     }
 
+    fun closeBottomSheet(){
+        dismissAllowingStateLoss()
+    }
+
     fun addProduct(){
-        listener.clickAddProduct(BarcodeResponse(Random.nextInt(), "1", "2", "3"))
+        listener.clickAddProduct(
+            Data(
+                Random.nextInt(),
+                viewModel.barcode.get() ?: "",
+                viewModel.name.get() ?: "",
+                viewModel.date.get() ?: ""
+            )
+        )
         dismissAllowingStateLoss()
     }
 
     interface ListenerAddProduct {
-        fun clickAddProduct(item: BarcodeResponse)
+        fun clickAddProduct(item: Data)
     }
 }
