@@ -93,7 +93,7 @@ android {
 
     buildTypes {
         release {
-            debuggable false
+            debuggable true
             minifyEnabled false
             shrinkResources false
             useProguard true
@@ -134,8 +134,8 @@ android {
 
         devFlavor {
             resValue "string", "app_name", "Expiry"
-            applicationId "com.afgdevlab.expirydate.ldsDev"
-            android.defaultConfig.applicationId "com.afgdevlab.expirydate.ldsDev"
+            applicationId "com.afgdevlab.expirydate"
+            android.defaultConfig.applicationId "com.afgdevlab.expirydate"
             ext.betaDistributionReleaseNotes = "liveReleaseNote"
             ext.betaDistributionGroupAliases = "qa,managers,android-developers"
             ext.betaDistributionNotifications = true
@@ -218,12 +218,16 @@ dependencies {
     implementation "com.readystatesoftware.chuck:library:$versions.chuck"
 
     //firebase
-    implementation platform('com.google.firebase:firebase-bom:26.7.0')
+    implementation platform('com.google.firebase:firebase-bom:28.3.0')
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-messaging:21.0.1'
+    implementation 'com.google.firebase:firebase-config-ktx'
     implementation 'com.google.firebase:firebase-crashlytics-ktx'
     implementation 'com.google.firebase:firebase-dynamic-links-ktx'
     implementation 'com.google.firebase:firebase-analytics-ktx'
+
+    //ads
+    implementation 'com.google.android.gms:play-services-ads:19.7.0'
 
 
     //other
