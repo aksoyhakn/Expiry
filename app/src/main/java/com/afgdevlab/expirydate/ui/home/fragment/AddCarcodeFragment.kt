@@ -102,8 +102,8 @@ class AddCarcodeFragment(
             startCalendar.set(Calendar.YEAR, year)
             startCalendar.set(Calendar.MONTH, month)
             startCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-            startCalendar.set(Calendar.HOUR_OF_DAY, System.currentTimeMillis().hourOfDay)
-            startCalendar.set(Calendar.MINUTE, System.currentTimeMillis().minuteOfHour+2)
+            startCalendar.set(Calendar.HOUR_OF_DAY, System.currentTimeMillis().hourOfDay + 1)
+            startCalendar.set(Calendar.MINUTE, System.currentTimeMillis().minuteOfHour)
 
             viewModel.lastDateControl.set((startCalendar.time.time - System.currentTimeMillis()).dayOfMonth.toString())
 
