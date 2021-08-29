@@ -1,6 +1,7 @@
 package com.afgdevlab.expirydate.ui.home
 
 import androidx.databinding.ObservableField
+import androidx.databinding.adapters.TextViewBindingAdapter
 import androidx.hilt.lifecycle.ViewModelInject
 import com.afgdevlab.expirydate.base.viewmodel.BaseViewModel
 import com.afgdevlab.expirydate.data.persistence.AppDatabase
@@ -27,6 +28,11 @@ class HomeViewModel @ViewModelInject constructor(
     var item = ObservableField(appDatabase.iyiyasaDAO().getData() as ArrayList<Data>)
     var product = SingleLiveData<Data>()
     var productDelete = SingleLiveData<Data>()
+
+    var searchKey = ObservableField<String>()
+    var search = TextViewBindingAdapter.OnTextChanged { s, start, before, count ->
+        searchKey.set(s.toString())
+    }
 
     fun add(data: Data?) {
         data.notNull {

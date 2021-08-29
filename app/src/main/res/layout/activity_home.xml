@@ -105,6 +105,7 @@
                 android:layout_marginStart="16dp"
                 android:background="@null"
                 android:hint="@string/home_product_search"
+                android:onTextChanged="@{viewModel.search}"
                 android:imeOptions="actionSearch"
                 android:maxLines="1"
                 android:singleLine="true"
@@ -132,10 +133,37 @@
             app:layout_constraintTop_toBottomOf="@+id/rl_search">
 
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                bind:visibleIf="@{viewModel.item.size() == 0}"
+                android:id="@+id/ll_not_found"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/ic_tabler_icon_ban"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    style="@style/ExpiryHead2"
+                    android:text="@string/home_product_not_found"/>
+
+            </LinearLayout>
+
+
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_course"
+                android:id="@+id/rv_search"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                bind:visibleIf="@{viewModel.item.size() != 0}"
                 android:layout_marginHorizontal="8dp"
                 android:layout_marginTop="20dp"
                 android:orientation="vertical"

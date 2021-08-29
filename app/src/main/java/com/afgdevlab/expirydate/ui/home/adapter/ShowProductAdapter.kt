@@ -2,6 +2,8 @@ package com.afgdevlab.expirydate.ui.home.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -11,13 +13,14 @@ import com.afgdevlab.expirydate.data.persistence.entity.Data
 import com.afgdevlab.expirydate.databinding.ItemProductBinding
 import com.afgdevlab.expirydate.extensions.isNotNull
 import com.afgdevlab.expirydate.extensions.lastDateControl
-import com.afgdevlab.expirydate.extensions.notNull
 
 
 class ShowProductAdapter(
-    val products: ArrayList<Data>,
+    var products: ArrayList<Data>,
     val listener: ListenerShowProductData
-) : RecyclerView.Adapter<ShowProductAdapter.ShowProductViewHolder>() {
+) : RecyclerView.Adapter<ShowProductAdapter.ShowProductViewHolder>(),Filterable {
+
+    var productFiltered: ArrayList<Data> = products
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShowProductViewHolder {
         return ShowProductViewHolder(
@@ -100,6 +103,40 @@ class ShowProductAdapter(
         }
     }
 
+    override fun getFilter(): Filter {
+        return object : Filter() {
+            override fun performFiltering(constraint: CharSequence?): FilterResults {
+                val charString = constraint?.toString() ?: ""
+
+                if (charString.isEmpty()) {
+                    products =productFiltered
+                } else {
+                    val filteredList = ArrayList<Data>()
+                    products
+                        .filter {
+                            (it.productName.contains(constraint!!))
+                        }
+                        .forEach { filteredList.add(it) }
+
+                    products = filteredList
+
+                }
+                return FilterResults().apply { values = products }
+            }
+
+            override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
+
+                products = if (results?.values == null)
+                    productFiltered
+                else
+                    (results.values as ArrayList<Data>)
+
+                listener.clickProductSearchSize(products.size)
+                notifyDataSetChanged()
+            }
+        }
+    }
+
     companion object {
 
         @JvmStatic
@@ -132,5 +169,6 @@ class ShowProductAdapter(
     interface ListenerShowProductData {
         fun clickProduct(item: Data,position:Int)
         fun clickProductDelete(item: Data)
+        fun clickProductSearchSize(item: Int)
     }
 }

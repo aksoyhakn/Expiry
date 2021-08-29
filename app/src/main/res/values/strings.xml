@@ -25,6 +25,7 @@
     <string name="home_delete_product">Ürün Başarıyla Silindi.</string>
     <string name="home_info_product">Size hatırlatacağız</string>
     <string name="home_product_save">Kaydet</string>
+    <string name="home_product_not_found">Ürün bulunamadı.</string>
     <!-- Home -->
 
 </resources>

@@ -50,17 +50,6 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
             .setClearTask(true)
             .build()
             .start()
-
-
-        /*
-
-        var database : AppDatabase = AppDatabase.getDatabase(this)!!
-        database.iyiyasaDAO().insertUser(Data(null,"5449000011114","COCA COLA 200ML"))
-        database.iyiyasaDAO().insertUser(Data(7343,"5449000011114","COCA COLA 200ML"))
-        database.iyiyasaDAO().insertUser(Data(null,"5449000011114","COCA COLA 200ML"))
-        database.iyiyasaDAO().getUsers()
-
-         */
     }
 
     override fun onRequestPermissionsResult(
