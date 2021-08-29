@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "f3660a284f30bd5e648eed5d25ddf1c0",
+    "identityHash": "df889e7e3914f687a40dc406ea775d32",
     "entities": [
       {
         "tableName": "Data",
@@ -59,12 +59,44 @@
         },
         "indices": [],
         "foreignKeys": []
+      },
+      {
+        "tableName": "NotificationChannelID",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `productName` TEXT NOT NULL, `notificationChannelID` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "ID",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "productName",
+            "columnName": "productName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "notificationChannelID",
+            "columnName": "notificationChannelID",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'f3660a284f30bd5e648eed5d25ddf1c0')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'df889e7e3914f687a40dc406ea775d32')"
     ]
   }
 }

@@ -24,3 +24,14 @@ data class Data(
     @ColumnInfo(name = "isOpenProductDate") var isOpenProductDate: String?=null,
     @ColumnInfo(name = "isOpenProduct") var isOpenProduct: Boolean? = false,
 ) : Parcelable
+
+
+
+@Entity
+@Parcelize
+data class NotificationChannelID(
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id") val ID: Int? = null,
+    @ColumnInfo(name = "productName") val productName: String,
+    @ColumnInfo(name = "notificationChannelID") val notificationChannelID: String
+) : Parcelable

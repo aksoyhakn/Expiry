@@ -2,6 +2,7 @@ package com.afgdevlab.expirydate.data.persistence
 
 import androidx.room.*
 import com.afgdevlab.expirydate.data.persistence.entity.Data
+import com.afgdevlab.expirydate.data.persistence.entity.NotificationChannelID
 
 /**
  * Created by hakanaksoy on 11.08.2021.
@@ -11,6 +12,7 @@ import com.afgdevlab.expirydate.data.persistence.entity.Data
 
 @Dao
 interface IyiyasaDao {
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertData(data: Data)
 
@@ -28,4 +30,13 @@ interface IyiyasaDao {
 
     @Query("SELECT * FROM Data")
     fun getData(): List<Data>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertNotificationChannelID(notificationChannelID: NotificationChannelID)
+
+    @Delete
+    fun deleteNotificationChannelID(notificationChannelID: NotificationChannelID)
+
+    @Query("SELECT * FROM NotificationChannelID WHERE notificationchannelid.productName == :name")
+    fun getNotificationChannelID(name: String): NotificationChannelID
 }

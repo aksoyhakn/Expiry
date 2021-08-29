@@ -20,7 +20,6 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import java.util.*
-import kotlin.random.Random
 
 
 /**
@@ -72,17 +71,24 @@ class AddCarcodeFragment(
     }
 
     fun addProduct(){
-        startAlarm(startCalendar)
-        listener.clickAddProduct(
-            Data(
-                Random.nextInt(),
-                viewModel.barcode.get() ?: "",
-                viewModel.name.get() ?: "",
-                viewModel.date.get() ?: "",
-                viewModel.lastDateControl.get() ?: "4"
+
+        if (!viewModel.barcode.get().isNullOrEmpty() &&
+            !viewModel.name.get().isNullOrEmpty() &&
+            !viewModel.date.get().isNullOrEmpty()
+        ) {
+            var uniqeID = (0..100000).random()
+            startAlarm(startCalendar,uniqeID)
+            listener.clickAddProduct(
+                Data(
+                    uniqeID,
+                    viewModel.barcode.get() ?: "",
+                    viewModel.name.get() ?: "",
+                    viewModel.date.get() ?: "",
+                    viewModel.lastDateControl.get() ?: "4"
+                )
             )
-        )
-        dismissAllowingStateLoss()
+            dismissAllowingStateLoss()
+        }
     }
 
     @SuppressLint("SetTextI18n")
@@ -93,8 +99,8 @@ class AddCarcodeFragment(
             startCalendar.set(Calendar.YEAR, year)
             startCalendar.set(Calendar.MONTH, month)
             startCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-            startCalendar.set(Calendar.HOUR_OF_DAY, System.currentTimeMillis().hourOfDay + 1)
-            startCalendar.set(Calendar.MINUTE, System.currentTimeMillis().minuteOfHour)
+            startCalendar.set(Calendar.HOUR_OF_DAY, System.currentTimeMillis().hourOfDay)
+            startCalendar.set(Calendar.MINUTE, System.currentTimeMillis().minuteOfHour+2)
 
             viewModel.lastDateControl.set((startCalendar.time.time - System.currentTimeMillis()).dayOfMonth.toString())
 
@@ -120,7 +126,8 @@ class AddCarcodeFragment(
         picker.show()
     }
 
-    private fun startAlarm(calendar: Calendar) {
+    private fun startAlarm(calendar: Calendar,uniqeID:Int) {
+        viewModel.addNotificationChannel(calendar.time.getNotificationTimeStamp())
         val alarmManager = requireActivity().getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val intent = Intent(requireActivity(), AlarmReceiver::class.java)
 
@@ -128,8 +135,7 @@ class AddCarcodeFragment(
             Constants.Notification.NOTIFICATION_CHANNEL_ID,
             calendar.time.getNotificationTimeStamp()
         )
-        val pendingIntent = PendingIntent.getBroadcast(requireContext(), 0, intent, 0)
-        calendar.timeInMillis.dayOfMonth
+        val pendingIntent = PendingIntent.getBroadcast(requireContext(), uniqeID, intent, 0)
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, pendingIntent)
     }
 

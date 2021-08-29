@@ -13,7 +13,7 @@ class AlarmReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         intent.getStringExtra(Constants.Notification.NOTIFICATION_CHANNEL_ID).notNull {
             val notificationUtils = NotificationUtils(context,it)
-            val notification = notificationUtils.getNotificationBuilder(context.resString(R.string.home_expiry)).build()
+            val notification = notificationUtils.getNotificationBuilder(it).build()
             notificationUtils.getManager().notify(150, notification)
         }
     }

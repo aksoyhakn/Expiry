@@ -4,6 +4,8 @@ import androidx.databinding.ObservableField
 import androidx.databinding.adapters.TextViewBindingAdapter
 import androidx.hilt.lifecycle.ViewModelInject
 import com.afgdevlab.expirydate.base.viewmodel.BaseViewModel
+import com.afgdevlab.expirydate.data.persistence.AppDatabase
+import com.afgdevlab.expirydate.data.persistence.entity.NotificationChannelID
 import com.afgdevlab.expirydate.data.preference.PreferenceHelperImp
 
 /**
@@ -13,14 +15,14 @@ import com.afgdevlab.expirydate.data.preference.PreferenceHelperImp
 
 class AddCarcodeFragmentViewModel @ViewModelInject constructor(
     private val addCarcodeFragmentRepository: AddCarcodeFragmentRepository,
-    var preferenceHelperImp: PreferenceHelperImp
+    var preferenceHelperImp: PreferenceHelperImp,
+    private val appDatabase: AppDatabase
 ) : BaseViewModel() {
 
     var barcode = ObservableField<String>()
     var name = ObservableField<String>()
     var date = ObservableField<String>()
     var lastDateControl = ObservableField<String>()
-
 
     var productBarcode = TextViewBindingAdapter.OnTextChanged { s, start, before, count ->
         barcode.set(s.toString())
@@ -34,4 +36,14 @@ class AddCarcodeFragmentViewModel @ViewModelInject constructor(
         date.set(s.toString())
     }
 
+    fun addNotificationChannel(channelId:String){
+        appDatabase.iyiyasaDAO()
+            .insertNotificationChannelID(
+                NotificationChannelID(
+                    (0..100000).random(),
+                    name.get() ?: "1",
+                    channelId
+                )
+            )
+    }
 }

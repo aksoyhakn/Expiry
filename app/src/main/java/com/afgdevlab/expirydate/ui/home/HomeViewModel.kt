@@ -5,6 +5,7 @@ import androidx.hilt.lifecycle.ViewModelInject
 import com.afgdevlab.expirydate.base.viewmodel.BaseViewModel
 import com.afgdevlab.expirydate.data.persistence.AppDatabase
 import com.afgdevlab.expirydate.data.persistence.entity.Data
+import com.afgdevlab.expirydate.data.persistence.entity.NotificationChannelID
 import com.afgdevlab.expirydate.extensions.dayOfMonth
 import com.afgdevlab.expirydate.extensions.monthOfName
 import com.afgdevlab.expirydate.extensions.notNull
@@ -20,7 +21,7 @@ import java.util.*
 
 class HomeViewModel @ViewModelInject constructor(
     private val homeRepository: HomeRepository,
-    private val appDatabase: AppDatabase
+    val appDatabase: AppDatabase
 ) : BaseViewModel() {
 
     var item = ObservableField(appDatabase.iyiyasaDAO().getData() as ArrayList<Data>)
@@ -37,6 +38,7 @@ class HomeViewModel @ViewModelInject constructor(
     fun delete(data:Data?){
         data.notNull {
             appDatabase.iyiyasaDAO().deleteData(it)
+            deleteNotificationChannel(it.productName)
             productDelete.value = it
         }
     }
@@ -51,6 +53,14 @@ class HomeViewModel @ViewModelInject constructor(
                 )
             } ${System.currentTimeMillis().monthOfName} ${System.currentTimeMillis().year}"
             appDatabase.iyiyasaDAO().updateData(it)
+        }
+    }
+
+
+    private fun deleteNotificationChannel(name :String){
+        name.notNull {
+            var notificationChannelID = appDatabase.iyiyasaDAO().getNotificationChannelID(name)
+            appDatabase.iyiyasaDAO().deleteNotificationChannelID(notificationChannelID)
         }
     }
 }

@@ -1,9 +1,16 @@
 package com.afgdevlab.expirydate.ui.home
 
 import android.app.Activity
+import android.app.AlarmManager
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
+import android.os.Build
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.Observer
 import com.afgdevlab.expirydate.R
 import com.afgdevlab.expirydate.base.activity.BaseSlideActivity
@@ -13,8 +20,12 @@ import com.afgdevlab.expirydate.databinding.ActivityHomeBinding
 import com.afgdevlab.expirydate.extensions.*
 import com.afgdevlab.expirydate.ui.home.adapter.ShowProductAdapter
 import com.afgdevlab.expirydate.ui.home.fragment.AddCarcodeFragment
+import com.afgdevlab.expirydate.utils.Constants
+import com.afgdevlab.expirydate.utils.notification.AlarmReceiver
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import java.util.*
+
 
 /**
  * Created by hakanaksoy on 11.08.2021.
@@ -98,9 +109,24 @@ class HomeActivity : BaseSlideActivity<ActivityHomeBinding>(R.layout.activity_ho
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun clickProductDelete(item: Data) {
         showLoading()
+
+        var notificationChannelID = viewModel.appDatabase.iyiyasaDAO().getNotificationChannelID(item.productName)
+        var manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        manager.deleteNotificationChannel("${notificationChannelID.notificationChannelID}ID")
+
+        deleteAlarm(item.ID!!)
         viewModel.delete(item)
+    }
+
+
+    private fun deleteAlarm(uniqeID:Int) {
+        val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val intent = Intent(this, AlarmReceiver::class.java)
+        val pendingIntent = PendingIntent.getBroadcast(this, uniqeID, intent, 0)
+        alarmManager.cancel(pendingIntent)
     }
 
 }

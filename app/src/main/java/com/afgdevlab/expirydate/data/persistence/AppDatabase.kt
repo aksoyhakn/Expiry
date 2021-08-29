@@ -5,13 +5,14 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.afgdevlab.expirydate.data.persistence.entity.Data
+import com.afgdevlab.expirydate.data.persistence.entity.NotificationChannelID
 
 /**
  * Created by hakanaksoy on 11.08.2021.
  * Loodos
  */
 
-@Database(entities = [Data::class], version = 1, exportSchema = true)
+@Database(entities = [Data::class, NotificationChannelID::class], version = 1, exportSchema = true)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun iyiyasaDAO(): IyiyasaDao
 

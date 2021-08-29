@@ -10,11 +10,17 @@ import android.content.Intent
 import android.graphics.Color
 import android.media.RingtoneManager
 import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import com.afgdevlab.expirydate.R
+import com.afgdevlab.expirydate.extensions.notNull
 import com.afgdevlab.expirydate.ui.home.HomeActivity
 
 class NotificationUtils(base: Context, naming: String) : ContextWrapper(base) {
+
+    companion object{
+        var isDelete : Boolean = false
+    }
 
     var MYCHANNEL_ID = ""
 
@@ -22,8 +28,10 @@ class NotificationUtils(base: Context, naming: String) : ContextWrapper(base) {
 
     init {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            MYCHANNEL_ID = naming
-            createChannels(naming)
+            MYCHANNEL_ID = "${naming}ID"
+            if(!isDelete){
+                createChannels(naming)
+            }
         }
     }
 
