@@ -18,13 +18,13 @@ import com.afgdevlab.expirydate.base.viewmodel.BaseViewModel
 import com.afgdevlab.expirydate.data.persistence.entity.Data
 import com.afgdevlab.expirydate.databinding.ActivityHomeBinding
 import com.afgdevlab.expirydate.extensions.*
+import com.afgdevlab.expirydate.ui.barcode.BarcodeActivity
 import com.afgdevlab.expirydate.ui.home.adapter.ShowProductAdapter
 import com.afgdevlab.expirydate.ui.home.fragment.AddCarcodeFragment
 import com.afgdevlab.expirydate.utils.Constants
 import com.afgdevlab.expirydate.utils.notification.AlarmReceiver
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import java.util.*
 
 
 /**
@@ -67,11 +67,9 @@ class HomeActivity : BaseSlideActivity<ActivityHomeBinding>(R.layout.activity_ho
     }
 
     fun openBarcode() {
-        openAddBarcode()
-        /*
-         startForResult.launch(Intent(this, BarcodeActivity::class.java))
+        startForResult.launch(Intent(this, BarcodeActivity::class.java))
         overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left)
-         */
+
     }
 
     private fun openAddBarcode(data: Data? = null) {
@@ -89,7 +87,16 @@ class HomeActivity : BaseSlideActivity<ActivityHomeBinding>(R.layout.activity_ho
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
             if (result.resultCode == Activity.RESULT_OK) {
                 val intent = result.data
-                // Handle the Intent test
+                var data = intent?.getParcelableExtra<Data>(Constants.Barcode.BARCODE_PRODUCT)
+                var error = intent?.getStringExtra(Constants.Barcode.BARCODE_ERROR)
+
+                data.notNull {
+                    openAddBarcode(data)
+                }
+
+                error.notNull {
+                    showDialog(it,false)
+                }
             }
         }
 

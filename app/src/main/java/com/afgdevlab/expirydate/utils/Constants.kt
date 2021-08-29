@@ -48,4 +48,9 @@ object Constants {
         val NOTIFICATION_CHANNEL_ID = "NOTIFICATION_CHANNEL_ID"
     }
 
+    object Barcode {
+        val BARCODE_PRODUCT = "BARCODE_PRODUCT"
+        val BARCODE_ERROR= "BARCODE_ERROR"
+    }
+
 }

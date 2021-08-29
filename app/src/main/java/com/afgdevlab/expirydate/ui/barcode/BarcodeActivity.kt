@@ -4,11 +4,13 @@ import android.app.Activity
 import android.content.Intent
 import android.util.Log
 import androidx.activity.viewModels
-import com.google.zxing.Result
 import com.afgdevlab.expirydate.R
 import com.afgdevlab.expirydate.base.activity.BaseSlideActivity
 import com.afgdevlab.expirydate.base.viewmodel.BaseViewModel
 import com.afgdevlab.expirydate.databinding.ActivityBarcodeBinding
+import com.afgdevlab.expirydate.extensions.notNull
+import com.afgdevlab.expirydate.utils.Constants
+import com.google.zxing.Result
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import me.dm7.barcodescanner.zxing.ZXingScannerView
@@ -32,7 +34,6 @@ class BarcodeActivity : BaseSlideActivity<ActivityBarcodeBinding>(R.layout.activ
     override fun bindScreen() {
         dataBinding.viewModel = viewModel
         initScannerView()
-        viewModel.getInit("")
     }
 
     private fun initScannerView() {
@@ -40,6 +41,26 @@ class BarcodeActivity : BaseSlideActivity<ActivityBarcodeBinding>(R.layout.activ
         mScannerView.setAutoFocus(true)
         mScannerView.setResultHandler(this)
         dataBinding.frameLayoutCamera.addView(mScannerView)
+
+        listenerBarcode()
+    }
+
+    fun listenerBarcode(){
+        viewModel.product.observe(this, {product->
+            val data = Intent().apply {
+                putExtra(Constants.Barcode.BARCODE_PRODUCT, product)
+            }
+            setResult(Activity.RESULT_OK, data)
+            finish()
+        })
+
+        viewModel.productError.observe(this, {product->
+            val data = Intent().apply {
+                putExtra(Constants.Barcode.BARCODE_ERROR, product)
+            }
+            setResult(Activity.RESULT_OK, data)
+            finish()
+        })
     }
 
     override fun onStart() {
@@ -53,13 +74,8 @@ class BarcodeActivity : BaseSlideActivity<ActivityBarcodeBinding>(R.layout.activ
     }
 
     override fun handleResult(rawResult: Result?) {
-        Log.d("TEST",rawResult?.text.toString())
-      /*  val data = Intent().apply {
-            putExtra(RESULT_ID, id)
-            putExtra(RESULT_NAME, name)
+        rawResult?.text.notNull {
+            viewModel.getInit(it)
         }
-        setResult(RESULT_OK, data)*/
-        setResult(Activity.RESULT_OK, intent)
-        finish()
     }
 }
