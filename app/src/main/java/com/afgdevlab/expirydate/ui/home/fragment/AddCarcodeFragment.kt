@@ -1,11 +1,13 @@
 package com.afgdevlab.expirydate.ui.home.fragment
 
 import android.annotation.SuppressLint
+import android.app.AlarmManager
 import android.app.DatePickerDialog
-import android.util.Log
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.afgdevlab.expirydate.R
 import com.afgdevlab.expirydate.base.bottomsheet.BaseBottomSheetDialog
 import com.afgdevlab.expirydate.base.viewmodel.BaseViewModel
@@ -13,10 +15,13 @@ import com.afgdevlab.expirydate.data.persistence.entity.Data
 import com.afgdevlab.expirydate.databinding.FragmentAddBarcodeBinding
 import com.afgdevlab.expirydate.extensions.*
 import com.afgdevlab.expirydate.utils.Constants
+import com.afgdevlab.expirydate.utils.notification.AlarmReceiver
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import java.util.*
 import kotlin.random.Random
+
 
 /**
  * Created by hakanaksoy on 21.06.2021.
@@ -67,6 +72,7 @@ class AddCarcodeFragment(
     }
 
     fun addProduct(){
+        startAlarm(startCalendar)
         listener.clickAddProduct(
             Data(
                 Random.nextInt(),
@@ -87,7 +93,7 @@ class AddCarcodeFragment(
             startCalendar.set(Calendar.YEAR, year)
             startCalendar.set(Calendar.MONTH, month)
             startCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-            startCalendar.set(Calendar.HOUR_OF_DAY, System.currentTimeMillis().hourOfDay)
+            startCalendar.set(Calendar.HOUR_OF_DAY, System.currentTimeMillis().hourOfDay + 1)
             startCalendar.set(Calendar.MINUTE, System.currentTimeMillis().minuteOfHour)
 
             viewModel.lastDateControl.set((startCalendar.time.time - System.currentTimeMillis()).dayOfMonth.toString())
@@ -113,6 +119,20 @@ class AddCarcodeFragment(
         picker.datePicker.minDate = System.currentTimeMillis()
         picker.show()
     }
+
+    private fun startAlarm(calendar: Calendar) {
+        val alarmManager = requireActivity().getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val intent = Intent(requireActivity(), AlarmReceiver::class.java)
+
+        intent.putExtra(
+            Constants.Notification.NOTIFICATION_CHANNEL_ID,
+            calendar.time.getNotificationTimeStamp()
+        )
+        val pendingIntent = PendingIntent.getBroadcast(requireContext(), 0, intent, 0)
+        calendar.timeInMillis.dayOfMonth
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, pendingIntent)
+    }
+
 
     interface ListenerAddProduct {
         fun clickAddProduct(item: Data)

@@ -120,3 +120,8 @@ val Date.withoutHourAndMinuteAsString: Long
 fun Date.getTimeStamp(): String {
     return SimpleDateFormat(Constants.App.TIMESTAMP_FORMAT, Locale.getDefault()).format(this)
 }
+
+
+fun Date.getNotificationTimeStamp(): String {
+    return SimpleDateFormat(Constants.App.NOTIFI_FORMAT, Locale.getDefault()).format(this)
+}

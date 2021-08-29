@@ -11,6 +11,7 @@ object Constants {
 
     object App {
         const val TIMESTAMP_FORMAT = "yyyy-MM-dd'T'HH:mm:ssZ"
+        const val NOTIFI_FORMAT = "dd-MM-yyyy"
         const val DB_NAME = "iyi-yasa"
         const val PREF_NAME = "iyi-yasa-pref"
 
@@ -41,6 +42,10 @@ object Constants {
 
     object AddProduct {
         val ADD_PRODUCT = "ADD_PRODUCT"
+    }
+
+    object Notification {
+        val NOTIFICATION_CHANNEL_ID = "NOTIFICATION_CHANNEL_ID"
     }
 
 }
