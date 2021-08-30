@@ -80,7 +80,7 @@ class AddCarcodeFragment(
             !viewModel.date.get().isNullOrEmpty()
         ) {
             var uniqeID = (0..100000).random()
-            startAlarm(startCalendar,uniqeID)
+            startAlarm(startCalendar,uniqeID,viewModel.name.get()!!)
             listener.clickAddProduct(
                 Data(
                     uniqeID,
@@ -102,8 +102,8 @@ class AddCarcodeFragment(
             startCalendar.set(Calendar.YEAR, year)
             startCalendar.set(Calendar.MONTH, month)
             startCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-            startCalendar.set(Calendar.HOUR_OF_DAY, System.currentTimeMillis().hourOfDay + 1)
-            startCalendar.set(Calendar.MINUTE, System.currentTimeMillis().minuteOfHour)
+            startCalendar.set(Calendar.HOUR_OF_DAY, System.currentTimeMillis().hourOfDay)
+            startCalendar.set(Calendar.MINUTE, System.currentTimeMillis().minuteOfHour + 1)
 
             viewModel.lastDateControl.set((startCalendar.time.time - System.currentTimeMillis()).dayOfMonth.toString())
 
@@ -129,17 +129,56 @@ class AddCarcodeFragment(
         picker.show()
     }
 
-    private fun startAlarm(calendar: Calendar,uniqeID:Int) {
+    private fun startAlarm(calendar: Calendar,uniqeID:Int,name:String) {
         viewModel.addNotificationChannel(calendar.time.getNotificationTimeStamp())
         val alarmManager = requireActivity().getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        val intent = Intent(requireActivity(), AlarmReceiver::class.java)
 
+        val intent = Intent(requireActivity(), AlarmReceiver::class.java)
         intent.putExtra(
             Constants.Notification.NOTIFICATION_CHANNEL_ID,
-            calendar.time.getNotificationTimeStamp()
+            "${calendar.time.getNotificationTimeStamp()}"
         )
+        intent.putExtra(
+            Constants.Notification.NOTIFICATION_CHANNEL_NAME,
+            getString(R.string.home_product_notifi_date,name)
+        )
+
+
+        val intent1 = Intent(requireActivity(), AlarmReceiver::class.java)
+        intent1.putExtra(
+            Constants.Notification.NOTIFICATION_CHANNEL_ID,
+            "${calendar.time.getNotificationTimeStamp()}"
+        )
+        intent1.putExtra(
+            Constants.Notification.NOTIFICATION_CHANNEL_NAME,
+            getString(R.string.home_product_notifi_week,name)
+        )
+
+
+        val intent2 = Intent(requireActivity(), AlarmReceiver::class.java)
+        intent2.putExtra(
+            Constants.Notification.NOTIFICATION_CHANNEL_ID,
+            "${calendar.time.getNotificationTimeStamp()}"
+        )
+        intent2.putExtra(
+            Constants.Notification.NOTIFICATION_CHANNEL_NAME,
+            getString(R.string.home_product_notifi_months,name)
+        )
+
+
         val pendingIntent = PendingIntent.getBroadcast(requireContext(), uniqeID, intent, 0)
-        alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, pendingIntent)
+        val pendingIntent1 = PendingIntent.getBroadcast(requireContext(), uniqeID+1, intent1, 0)
+        val pendingIntent2 = PendingIntent.getBroadcast(requireContext(), uniqeID+2, intent2, 0)
+
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.timeInMillis - 86400000, pendingIntent)
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.timeInMillis - 604800000, pendingIntent1)
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.timeInMillis - 2592000000, pendingIntent2)
+
+
+        // alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.timeInMillis + 604800000, pendingIntent) //7gün
+        //alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.timeInMillis + 86400000, pendingIntent) //1gün
+        //alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.timeInMillis + 2592000000, pendingIntent) //1ay
+
     }
 
 

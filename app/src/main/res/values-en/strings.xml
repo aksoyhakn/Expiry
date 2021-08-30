@@ -26,6 +26,9 @@
     <string name="home_info_product">Size hatırlatacağız</string>
     <string name="home_product_save">Kaydet</string>
     <string name="home_product_not_found">Ürün bulunamadı.</string>
+    <string name="home_product_notifi_date"> %s son kullanma tarihinin bitmesine 1 gün kalmıştır.</string>
+    <string name="home_product_notifi_week">%s son kullanma tarihinin bitmesine 1 hafta kalmıştır.</string>
+    <string name="home_product_notifi_months">%s son kullanma tarihinin bitmesine 1 ay kalmıştır.</string>
     <!-- Home -->
 
 </resources>

@@ -166,7 +166,13 @@ class HomeActivity : BaseSlideActivity<ActivityHomeBinding>(R.layout.activity_ho
         val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val intent = Intent(this, AlarmReceiver::class.java)
         val pendingIntent = PendingIntent.getBroadcast(this, uniqeID, intent, 0)
+        val pendingIntent1 = PendingIntent.getBroadcast(this, uniqeID+1, intent, 0)
+        val pendingIntent2 = PendingIntent.getBroadcast(this, uniqeID+2, intent, 0)
+
         alarmManager.cancel(pendingIntent)
+        alarmManager.cancel(pendingIntent1)
+        alarmManager.cancel(pendingIntent2)
+
     }
 
 }

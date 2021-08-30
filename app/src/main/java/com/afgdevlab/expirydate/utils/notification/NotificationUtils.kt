@@ -14,6 +14,7 @@ import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import com.afgdevlab.expirydate.R
 import com.afgdevlab.expirydate.extensions.notNull
+import com.afgdevlab.expirydate.extensions.resString
 import com.afgdevlab.expirydate.ui.home.HomeActivity
 
 class NotificationUtils(base: Context, naming: String) : ContextWrapper(base) {
@@ -62,9 +63,9 @@ class NotificationUtils(base: Context, naming: String) : ContextWrapper(base) {
         }
         val pendingIntent = PendingIntent.getActivity(this, 0, intent, 0)
         return NotificationCompat.Builder(applicationContext, MYCHANNEL_ID)
-            .setContentTitle("Alarm!")
+            .setContentTitle(resString(R.string.home_expiry))
             .setContentText(mesaj)
-            .setSmallIcon(R.drawable.ic_search)
+            .setSmallIcon(R.mipmap.ic_launcher_1_foreground)
             .setColor(Color.YELLOW)
             .setContentIntent(pendingIntent)
             .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
