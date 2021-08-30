@@ -22,7 +22,7 @@ class AddCarcodeFragmentViewModel @ViewModelInject constructor(
     var barcode = ObservableField<String>()
     var name = ObservableField<String>()
     var date = ObservableField<String>()
-    var lastDateControl = ObservableField<String>()
+    var lastDateControl = ObservableField<Long>()
 
     var productBarcode = TextViewBindingAdapter.OnTextChanged { s, start, before, count ->
         barcode.set(s.toString())

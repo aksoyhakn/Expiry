@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "df889e7e3914f687a40dc406ea775d32",
+    "identityHash": "5556e024f3f1c2028c90ed07cd24c3bb",
     "entities": [
       {
         "tableName": "Data",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `productBarcodeID` TEXT NOT NULL, `productName` TEXT NOT NULL, `productDate` TEXT NOT NULL, `productDateControl` TEXT, `isOpenProductDate` TEXT, `isOpenProduct` INTEGER)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `productBarcodeID` TEXT NOT NULL, `productName` TEXT NOT NULL, `productDate` TEXT NOT NULL, `productDateControl` INTEGER, `isOpenProductDate` TEXT, `isOpenProduct` INTEGER)",
         "fields": [
           {
             "fieldPath": "ID",
@@ -35,7 +35,7 @@
           {
             "fieldPath": "productDateControl",
             "columnName": "productDateControl",
-            "affinity": "TEXT",
+            "affinity": "INTEGER",
             "notNull": false
           },
           {
@@ -96,7 +96,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'df889e7e3914f687a40dc406ea775d32')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '5556e024f3f1c2028c90ed07cd24c3bb')"
     ]
   }
 }

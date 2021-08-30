@@ -20,7 +20,7 @@ data class Data(
     @ColumnInfo(name = "productBarcodeID") val productBarcodeID: String,
     @ColumnInfo(name = "productName") val productName: String,
     @ColumnInfo(name = "productDate") val productDate: String,
-    @ColumnInfo(name = "productDateControl") val productDateControl: String?=null,
+    @ColumnInfo(name = "productDateControl") val productDateControl: Long?=null,
     @ColumnInfo(name = "isOpenProductDate") var isOpenProductDate: String?=null,
     @ColumnInfo(name = "isOpenProduct") var isOpenProduct: Boolean? = false,
 ) : Parcelable

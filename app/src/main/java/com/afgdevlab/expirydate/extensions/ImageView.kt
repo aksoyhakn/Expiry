@@ -116,12 +116,12 @@ fun ImageView.loadGlideImageCircleCropCache(
 }
 
 
-fun ImageView.lastDateControl(countDate: String) {
+fun ImageView.lastDateControl(countDate: Int) {
     countDate.notNull {
         when(it){
-            "1"-> this.setBackgroundResource(R.drawable.ic_date4)
-            "2"-> this.setBackgroundResource(R.drawable.ic_date3)
-            "3"-> this.setBackgroundResource(R.drawable.ic_date2)
+            in 0..23-> this.setBackgroundResource(R.drawable.ic_date4)
+            in 24..144-> this.setBackgroundResource(R.drawable.ic_date3)
+            in 145..696-> this.setBackgroundResource(R.drawable.ic_date2)
             else-> this.setBackgroundResource(R.drawable.ic_date1)
         }
     }

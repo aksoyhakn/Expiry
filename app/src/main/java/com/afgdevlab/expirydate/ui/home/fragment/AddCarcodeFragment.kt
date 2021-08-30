@@ -87,7 +87,7 @@ class AddCarcodeFragment(
                     viewModel.barcode.get() ?: "",
                     viewModel.name.get() ?: "",
                     viewModel.date.get() ?: "",
-                    viewModel.lastDateControl.get() ?: "4"
+                    viewModel.lastDateControl.get() ?: 1L
                 )
             )
             dismissAllowingStateLoss()
@@ -105,7 +105,7 @@ class AddCarcodeFragment(
             startCalendar.set(Calendar.HOUR_OF_DAY, System.currentTimeMillis().hourOfDay)
             startCalendar.set(Calendar.MINUTE, System.currentTimeMillis().minuteOfHour + 1)
 
-            viewModel.lastDateControl.set((startCalendar.time.time - System.currentTimeMillis()).dayOfMonth.toString())
+            viewModel.lastDateControl.set(startCalendar.time.time)
 
             dataBinding.edProductdate.setText(
                 "${

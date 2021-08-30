@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.afgdevlab.expirydate.R
 import com.afgdevlab.expirydate.data.persistence.entity.Data
 import com.afgdevlab.expirydate.databinding.ItemProductBinding
+import com.afgdevlab.expirydate.extensions.dayOfMonth
+import com.afgdevlab.expirydate.extensions.hour
 import com.afgdevlab.expirydate.extensions.isNotNull
 import com.afgdevlab.expirydate.extensions.lastDateControl
 
@@ -87,8 +89,11 @@ class ShowProductAdapter(
             if(product.isOpenProduct == true){
                 binding.ivIcon.setBackgroundResource(R.drawable.ic_date4)
             }else{
-                binding.ivIcon.lastDateControl(product.productDateControl!!)
+                binding.ivIcon.lastDateControl((product.productDateControl!! - System.currentTimeMillis()).hour)
             }
+
+            1635459834172
+            1630362159889
             binding.item = product
 
             binding.llProduct.setOnClickListener {
