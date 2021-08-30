@@ -28,7 +28,7 @@ import com.afgdevlab.expirydate.utils.notification.AlarmReceiver
 import dagger.hilt.android.AndroidEntryPoint
 import hideKeyboard
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import java.util.ArrayList
+import java.util.*
 
 
 /**
@@ -116,8 +116,9 @@ class HomeActivity : BaseSlideActivity<ActivityHomeBinding>(R.layout.activity_ho
             }
         }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun clickProduct(item: Data, position: Int) {
-        showProductStatus {
+        showProductStatus(item.isOpenProduct ?: false,{
             item.notNull {
                 showLoading()
                 viewModel.update(it)
@@ -129,19 +130,19 @@ class HomeActivity : BaseSlideActivity<ActivityHomeBinding>(R.layout.activity_ho
                     )
                 }
             }
-        }
-    }
+        }, {
+            showLoading()
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    override fun clickProductDelete(item: Data) {
-        showLoading()
+            (dataBinding.rvSearch.adapter as? ShowProductAdapter)?.deletePosition(position)
 
-        var notificationChannelID = viewModel.appDatabase.iyiyasaDAO().getNotificationChannelID(item.productName)
-        var manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        manager.deleteNotificationChannel("${notificationChannelID.notificationChannelID}ID")
+            var notificationChannelID =
+                viewModel.appDatabase.iyiyasaDAO().getNotificationChannelID(item.productName)
+            var manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            manager.deleteNotificationChannel("${notificationChannelID.notificationChannelID}ID")
 
-        deleteAlarm(item.ID!!)
-        viewModel.delete(item)
+            deleteAlarm(item.ID!!)
+            viewModel.delete(item)
+        })
     }
 
     override fun clickProductSearchSize(item: Int) {

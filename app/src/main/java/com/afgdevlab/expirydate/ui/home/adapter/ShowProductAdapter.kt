@@ -6,7 +6,6 @@ import android.widget.Filter
 import android.widget.Filterable
 import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
-import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.afgdevlab.expirydate.R
 import com.afgdevlab.expirydate.data.persistence.entity.Data
@@ -51,7 +50,6 @@ class ShowProductAdapter(
     }
 
     fun deletePosition(position:Int){
-        listener.clickProductDelete(products.get(position))
         products.removeAt(position)
         notifyItemRemoved(position)
     }
@@ -94,9 +92,7 @@ class ShowProductAdapter(
             binding.item = product
 
             binding.llProduct.setOnClickListener {
-                if(product.isOpenProduct != true){
-                    onClick(product,position)
-                }
+                onClick(product, position)
             }
 
             binding.executePendingBindings()
@@ -149,17 +145,6 @@ class ShowProductAdapter(
             if (product.isNotNull()) {
                 view.adapter =
                     ShowProductAdapter((product as ArrayList<Data>), listener)
-
-                view.adapter =
-                    ShowProductAdapter(product as ArrayList<Data>, listener)
-                val swipeHandler = object : SwipeToDeleteCallback(view.context) {
-                    override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                        val adapter = view.adapter as ShowProductAdapter
-                        adapter.deletePosition(viewHolder.adapterPosition)
-                    }
-                }
-                val itemTouchHelper = ItemTouchHelper(swipeHandler)
-                itemTouchHelper.attachToRecyclerView(view)
             }
 
 
@@ -168,7 +153,6 @@ class ShowProductAdapter(
 
     interface ListenerShowProductData {
         fun clickProduct(item: Data,position:Int)
-        fun clickProductDelete(item: Data)
         fun clickProductSearchSize(item: Int)
     }
 }

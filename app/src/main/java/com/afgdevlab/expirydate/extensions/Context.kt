@@ -187,7 +187,7 @@ fun Context.showDialog(mesaj:String,isSuccess: Boolean? = false) {
 
 
 
-fun Context.showProductStatus(listener: () -> Unit) {
+fun Context.showProductStatus(isOpenProduct:Boolean,listenerOpenPackage: () -> Unit,listenerDelete: () -> Unit) {
     this.notNull {
         val dialog = Dialog(it)
         val binding: DialogOpenProductBinding =
@@ -200,9 +200,18 @@ fun Context.showProductStatus(listener: () -> Unit) {
         dialog.setCanceledOnTouchOutside(true)
         dialog.show()
 
+        if(isOpenProduct){
+            binding.llOpenpackage.visibility=View.GONE
+        }
+
         binding.llOpenpackage.setRXSafeOnClickListener {
             dialog.dismiss()
-            listener()
+            listenerOpenPackage()
+        }
+
+        binding.llDelete.setRXSafeOnClickListener {
+            dialog.dismiss()
+            listenerDelete()
         }
 
     }
