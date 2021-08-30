@@ -227,6 +227,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics-ktx'
 
     //ads
+    implementation 'com.google.android.gms:play-services-ads:19.3.0'
 
 
     //other

@@ -25,6 +25,8 @@ import com.afgdevlab.expirydate.ui.home.adapter.ShowProductAdapter
 import com.afgdevlab.expirydate.ui.home.fragment.AddCarcodeFragment
 import com.afgdevlab.expirydate.utils.Constants
 import com.afgdevlab.expirydate.utils.notification.AlarmReceiver
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
 import dagger.hilt.android.AndroidEntryPoint
 import hideKeyboard
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -60,6 +62,11 @@ class HomeActivity : BaseSlideActivity<ActivityHomeBinding>(R.layout.activity_ho
             }
             true
         }
+
+
+        MobileAds.initialize(this)
+        val adRequest = AdRequest.Builder().build()
+        dataBinding.adView.loadAd(adRequest)
 
     }
 
