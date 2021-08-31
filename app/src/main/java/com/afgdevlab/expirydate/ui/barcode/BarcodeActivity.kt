@@ -10,6 +10,8 @@ import com.afgdevlab.expirydate.base.viewmodel.BaseViewModel
 import com.afgdevlab.expirydate.databinding.ActivityBarcodeBinding
 import com.afgdevlab.expirydate.extensions.notNull
 import com.afgdevlab.expirydate.utils.Constants
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
 import com.google.zxing.Result
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -43,6 +45,11 @@ class BarcodeActivity : BaseSlideActivity<ActivityBarcodeBinding>(R.layout.activ
         dataBinding.frameLayoutCamera.addView(mScannerView)
 
         listenerBarcode()
+
+        MobileAds.initialize(this)
+        val adRequest = AdRequest.Builder().build()
+        dataBinding.adView.loadAd(adRequest)
+
     }
 
     fun listenerBarcode(){

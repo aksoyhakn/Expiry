@@ -9,6 +9,7 @@ import android.content.Intent
 import android.os.Build
 import android.view.View
 import android.view.inputmethod.EditorInfo
+import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
@@ -26,7 +27,13 @@ import com.afgdevlab.expirydate.ui.home.fragment.AddCarcodeFragment
 import com.afgdevlab.expirydate.utils.Constants
 import com.afgdevlab.expirydate.utils.notification.AlarmReceiver
 import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.InterstitialAd
+import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.appopen.AppOpenAd.load
+import com.google.android.gms.ads.reward.RewardItem
+import com.google.android.gms.ads.reward.RewardedVideoAd
+import com.google.android.gms.ads.reward.RewardedVideoAdListener
 import dagger.hilt.android.AndroidEntryPoint
 import hideKeyboard
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -41,9 +48,12 @@ import java.util.*
 @ExperimentalCoroutinesApi
 @AndroidEntryPoint
 class HomeActivity : BaseSlideActivity<ActivityHomeBinding>(R.layout.activity_home),
-    ShowProductAdapter.ListenerShowProductData {
+    ShowProductAdapter.ListenerShowProductData, RewardedVideoAdListener {
 
     private val viewModel by viewModels<HomeViewModel>()
+
+    private  var mRewardedVideoAd: RewardedVideoAd ?= null
+
 
     override fun getBaseViewModel(): BaseViewModel = this.viewModel
 
@@ -53,7 +63,6 @@ class HomeActivity : BaseSlideActivity<ActivityHomeBinding>(R.layout.activity_ho
         dataBinding.listenerProduct = this
 
         listenerProduct()
-
 
         dataBinding.edSearch.setOnEditorActionListener { v, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
@@ -173,6 +182,65 @@ class HomeActivity : BaseSlideActivity<ActivityHomeBinding>(R.layout.activity_ho
         alarmManager.cancel(pendingIntent1)
         alarmManager.cancel(pendingIntent2)
 
+    }
+
+    private fun loadRewardedVideoAd() {
+        mRewardedVideoAd?.loadAd("ca-app-pub-3940256099942544/5224354917",
+            AdRequest.Builder().build())
+    }
+
+    override fun onRewardedVideoAdLoaded() {}
+
+    override fun onRewardedVideoAdOpened() {}
+
+    override fun onRewardedVideoStarted() {}
+
+    override fun onRewardedVideoAdClosed() {
+        mRewardedVideoAd?.destroy(this)
+    }
+
+    override fun onRewarded(p0: RewardItem?) {
+        mRewardedVideoAd?.destroy(this)
+    }
+
+    override fun onRewardedVideoAdLeftApplication() {}
+
+    override fun onRewardedVideoAdFailedToLoad(p0: Int) {
+        mRewardedVideoAd?.destroy(this)
+    }
+
+    override fun onRewardedVideoCompleted() {
+        mRewardedVideoAd?.destroy(this)
+        openBarcode()
+    }
+
+    fun openAds(){
+        if (mRewardedVideoAd?.isLoaded!!) {
+            mRewardedVideoAd?.show()
+        }else{
+            openBarcode()
+        }
+    }
+
+    fun initAds(){
+        mRewardedVideoAd = MobileAds.getRewardedVideoAdInstance(this)
+        mRewardedVideoAd?.rewardedVideoAdListener = this
+        loadRewardedVideoAd()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        mRewardedVideoAd?.pause(this)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        initAds()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mRewardedVideoAd?.destroy(this)
     }
 
 }
