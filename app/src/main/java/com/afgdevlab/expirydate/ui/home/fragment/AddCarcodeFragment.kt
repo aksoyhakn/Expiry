@@ -6,6 +6,7 @@ import android.app.DatePickerDialog
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import com.afgdevlab.expirydate.R
@@ -172,8 +173,10 @@ class AddCarcodeFragment(
 
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.timeInMillis - 86400000, pendingIntent)
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.timeInMillis - 604800000, pendingIntent1)
-        alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.timeInMillis - 2592000000, pendingIntent2)
 
+        if((calendar.timeInMillis - System.currentTimeMillis() > 2592000000)){
+            alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.timeInMillis - 2592000000, pendingIntent2)
+        }
 
         // alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.timeInMillis + 604800000, pendingIntent) //7gün
         //alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.timeInMillis + 86400000, pendingIntent) //1gün

@@ -193,7 +193,7 @@
                 android:id="@+id/ll_ads"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:background="@color/background"
+                android:background="@android:color/transparent"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -206,7 +206,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     ads:adSize="BANNER"
-                    ads:adUnitId="ca-app-pub-3940256099942544/6300978111"
+                    ads:adUnitId="ca-app-pub-2158784674868492/7825650670"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent" >

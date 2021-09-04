@@ -185,7 +185,7 @@ class HomeActivity : BaseSlideActivity<ActivityHomeBinding>(R.layout.activity_ho
     }
 
     private fun loadRewardedVideoAd() {
-        mRewardedVideoAd?.loadAd("ca-app-pub-3940256099942544/5224354917",
+        mRewardedVideoAd?.loadAd("ca-app-pub-2158784674868492/8947160652",
             AdRequest.Builder().build())
     }
 
@@ -196,6 +196,7 @@ class HomeActivity : BaseSlideActivity<ActivityHomeBinding>(R.layout.activity_ho
     override fun onRewardedVideoStarted() {}
 
     override fun onRewardedVideoAdClosed() {
+        openBarcode()
         mRewardedVideoAd?.destroy(this)
     }
 
