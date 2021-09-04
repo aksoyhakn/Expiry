@@ -1,35 +1,34 @@
 <resources>
 
-    <!-- Camera Permission-->
-
-    <string name="camera_permission">You need to camera permissions to use this app</string>
-    <string name="camera_permission_button_positive">OK</string>
-    <string name="camera_permission_button_negative">CANCEL</string>
+    <string name="camera_permission">We need camera permissions to read barcodes</string>
+    <string name="camera_permission_button_positive">Allow</string>
+    <string name="camera_permission_button_negative">Cancel</string>
 
     <!-- Camera Permission-->
 
     <!-- Home-->
     <string name="home_expiry">Expiry</string>
-    <string name="home_expiry_info">Kullanma tarihini\nKontrol altına al!</string>
-    <string name="home_added_product">Ürün Başarıyla Eklendi.</string>
-    <string name="home_add_product">Ürün Ekle</string>
-    <string name="home_barcode">Barkod</string>
-    <string name="home_product_name">Ürün Adı</string>
-    <string name="home_product_search">Ürün Ara</string>
-    <string name="home_product_last_date">Son Kullanma Tarihi</string>
-    <string name="home_product_open">Açılma Tarihi</string>
-    <string name="home_product_last_date_info">Ürünün üzerindeki son kullanma tarihi giriniz.</string>
-    <string name="home_open_package">Paketi Aç</string>
-    <string name="home_delete">Sil</string>
-    <string name="home_not_add_product">Ürün Eklenemedi.</string>
-    <string name="home_delete_product">Ürün Başarıyla Silindi.</string>
-    <string name="home_info_product">Size hatırlatacağız</string>
-    <string name="home_product_save">Kaydet</string>
-    <string name="home_product_not_found">Ürün bulunamadı.</string>
-    <string name="home_product_notifi_date"> %s son kullanma tarihinin bitmesine 1 gün kalmıştır.</string>
-    <string name="home_product_notifi_week">%s son kullanma tarihinin bitmesine 1 hafta kalmıştır.</string>
-    <string name="home_product_notifi_months">%s son kullanma tarihinin bitmesine 1 ay kalmıştır.</string>
-    <string name="expiry_force_update">Lütfen son sürümü yükleyiniz</string>
+    <string name="home_expiry_info">Check expiration date\n!</string>
+    <string name="home_added_product">Product Added Successfully.</string>
+    <string name="home_add_product">Add Product</string>
+    <string name="home_barcode">Barcode</string>
+    <string name="home_product_name">Product Name</string>
+    <string name="home_product_search">Search for Product</string>
+    <string name="home_product_last_date">Expiration Date</string>
+    <string name="home_product_open">Open Date</string>
+    <string name="home_product_last_date_info">Enter the expiration date on the product.</string>
+    <string name="home_open_package">Open Package</string>
+    <string name="home_delete">Delete</string>
+    <string name="home_not_add_product">Failed to Add Product.</string>
+    <string name="home_delete_product">Product Deleted Successfully.</string>
+    <string name="home_info_product">We will remind you</string>
+    <string name="home_product_save">Save</string>
+    <string name="home_product_not_found">The product was not found.</string>
+    <string name="home_product_notifi_date"> 1 day left until the expiration date of %s.</string>
+    <string name="home_product_notifi_week">There is 1 week left until the expiration date of %s.</string>
+    <string name="home_product_notifi_months">There is 1 month left before the expiration date of %s.</string>
+    <string name="expiry_force_update">Please install the latest version</string>
+
     <!-- Home -->
 
 </resources>
