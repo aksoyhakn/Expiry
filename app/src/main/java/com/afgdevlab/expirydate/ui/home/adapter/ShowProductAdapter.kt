@@ -115,7 +115,7 @@ class ShowProductAdapter(
                     val filteredList = ArrayList<Data>()
                     products
                         .filter {
-                            (it.productName.contains(constraint!!))
+                            (it.productName?.contains(constraint!!) ?: false)
                         }
                         .forEach { filteredList.add(it) }
 

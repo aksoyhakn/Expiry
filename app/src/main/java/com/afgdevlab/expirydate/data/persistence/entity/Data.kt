@@ -17,9 +17,9 @@ import kotlinx.android.parcel.Parcelize
 data class Data(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id") val ID: Int? = null,
-    @ColumnInfo(name = "productBarcodeID") val productBarcodeID: String,
-    @ColumnInfo(name = "productName") val productName: String,
-    @ColumnInfo(name = "productDate") val productDate: String,
+    @ColumnInfo(name = "productBarcodeID") val productBarcodeID: String ?=null,
+    @ColumnInfo(name = "productName") val productName: String ?= null,
+    @ColumnInfo(name = "productDate") val productDate: String ?=null,
     @ColumnInfo(name = "productDateControl") val productDateControl: Long?=null,
     @ColumnInfo(name = "isOpenProductDate") var isOpenProductDate: String?=null,
     @ColumnInfo(name = "isOpenProduct") var isOpenProduct: Boolean? = false,

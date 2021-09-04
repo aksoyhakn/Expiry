@@ -127,7 +127,7 @@ class HomeActivity : BaseSlideActivity<ActivityHomeBinding>(R.layout.activity_ho
                 }
 
                 error.notNull {
-                    showDialog(it,false)
+                    openAddBarcode(Data(productBarcodeID = it))
                 }
             }
         }
@@ -152,7 +152,7 @@ class HomeActivity : BaseSlideActivity<ActivityHomeBinding>(R.layout.activity_ho
             (dataBinding.rvSearch.adapter as? ShowProductAdapter)?.deletePosition(position)
 
             var notificationChannelID =
-                viewModel.appDatabase.iyiyasaDAO().getNotificationChannelID(item.productName)
+                viewModel.appDatabase.iyiyasaDAO().getNotificationChannelID(item.productName!!)
             var manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             manager.deleteNotificationChannel("${notificationChannelID.notificationChannelID}ID")
 

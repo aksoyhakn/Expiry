@@ -39,7 +39,7 @@ class BarcodeViewModel @ViewModelInject constructor(
                         toogleActivityLoading(false)
                         it.data.body().notNull { productData->
                             if(productData[0].dc_BarcodeId.isNullOrEmpty() && productData[0].dc_BarcodeId.isNullOrEmpty()){
-                                productError.value = productData[0].exception ?: "Hata"
+                                productError.value = barcodeID
                             }else{
                                 product.value = Data(1, productData[0].dc_BarcodeId!!, productData[0].dc_ProductName!!,"")
                             }

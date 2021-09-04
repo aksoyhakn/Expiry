@@ -44,7 +44,7 @@ class HomeViewModel @ViewModelInject constructor(
     fun delete(data:Data?){
         data.notNull {
             appDatabase.iyiyasaDAO().deleteData(it)
-            deleteNotificationChannel(it.productName)
+            deleteNotificationChannel(it.productName!!)
             productDelete.value = it
         }
     }
