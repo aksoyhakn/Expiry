@@ -2,10 +2,10 @@
 
     <!-- Camera Permission-->
 
-    <string name="camera_permission">You need to camera permissions to use this app</string>
-    <string name="camera_permission_button_positive">OK</string>
-    <string name="camera_permission_button_negative">CANCEL</string>
-
+    <string name="camera_permission">Barkod okuyabilmek için kamera izinlerine ihtiyacımız var</string>
+    <string name="camera_permission_button_positive">İzin Ver</string>
+    <string name="camera_permission_button_negative">İptal Et</string>
+    
     <!-- Camera Permission-->
 
     <!-- Home-->
