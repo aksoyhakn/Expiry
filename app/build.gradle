@@ -36,10 +36,10 @@ android {
     }
     signingConfigs {
         release {
-            keyAlias 'expiry'
-            keyPassword 'expiry'
-            storeFile file('../app/expiry.jks')
-            storePassword 'expiry'
+            keyAlias 'key'
+            keyPassword 'Ahmet%100'
+            storeFile file('../app/key.jks')
+            storePassword 'Ahmet%100'
         }
     }
 
@@ -93,7 +93,7 @@ android {
 
     buildTypes {
         release {
-            debuggable true
+            debuggable false
             minifyEnabled false
             shrinkResources false
             useProguard true
