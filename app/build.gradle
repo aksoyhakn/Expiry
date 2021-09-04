@@ -218,7 +218,7 @@ dependencies {
     implementation "com.readystatesoftware.chuck:library:$versions.chuck"
 
     //firebase
-    implementation platform('com.google.firebase:firebase-bom:28.3.0')
+    implementation platform('com.google.firebase:firebase-bom:28.4.0')
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-messaging:21.0.1'
     implementation 'com.google.firebase:firebase-config-ktx'
@@ -228,7 +228,6 @@ dependencies {
 
     //ads
     implementation 'com.google.android.gms:play-services-ads:19.3.0'
-
 
     //other
     implementation "com.github.zladnrms:RoundableLayout:$versions.roudableLayout"

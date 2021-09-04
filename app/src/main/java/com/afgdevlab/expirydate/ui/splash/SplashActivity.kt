@@ -4,16 +4,16 @@ import androidx.activity.viewModels
 import com.afgdevlab.expirydate.R
 import com.afgdevlab.expirydate.base.activity.BaseActivity
 import com.afgdevlab.expirydate.base.viewmodel.BaseViewModel
-import com.afgdevlab.expirydate.data.persistence.AppDatabase
-import com.afgdevlab.expirydate.data.persistence.IyiyasaDao
-import com.afgdevlab.expirydate.data.persistence.entity.Data
+import com.afgdevlab.expirydate.data.service.RemoteConfigOptions
+import com.afgdevlab.expirydate.data.service.Session
 import com.afgdevlab.expirydate.databinding.ActivitySplashBinding
-import com.afgdevlab.expirydate.extensions.handler
-import com.afgdevlab.expirydate.extensions.isCameraPermission
-import com.afgdevlab.expirydate.extensions.requestCameraPermission
-import com.afgdevlab.expirydate.ui.barcode.BarcodeActivity
+import com.afgdevlab.expirydate.extensions.*
 import com.afgdevlab.expirydate.ui.home.HomeActivity
 import com.afgdevlab.expirydate.utils.transition.ActivityTransition
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.remoteconfig.ktx.remoteConfig
+import com.google.firebase.remoteconfig.ktx.remoteConfigSettings
+import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import pub.devrel.easypermissions.EasyPermissions
@@ -37,7 +37,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
 
         handler(2000) {
             if (isCameraPermission()) {
-                openHome()
+                remoteConfig()
             } else {
                 requestCameraPermission()
             }
@@ -67,6 +67,42 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
 
     override fun onPermissionsGranted(requestCode: Int, perms: MutableList<String>) {
         openHome()
+    }
+
+    private fun remoteConfig() {
+        val remoteConfig = Firebase.remoteConfig
+        val configSettings = remoteConfigSettings {
+            minimumFetchIntervalInSeconds = 0
+        }
+        remoteConfig.setConfigSettingsAsync(configSettings)
+        remoteConfig.fetchAndActivate()
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    val remoteConfigOptionsJson: String = remoteConfig.getString("remote_config_options")
+
+                    if (!remoteConfigOptionsJson.isNullOrBlank()) {
+
+                        Session.current.remoteConfigOptions =
+                            Gson().fromJson(
+                                remoteConfigOptionsJson,
+                                RemoteConfigOptions::class.java
+                            )
+
+                        Session.current.remoteConfigOptions.notNull {
+                            if(it.isForceUpdate == true){
+                                showForceUpdate()
+                            }else{
+                                openHome()
+                            }
+                        }
+
+                    }
+                } else {
+                    openHome()
+                }
+            }.addOnFailureListener {
+                openHome()
+            }
     }
 
 }

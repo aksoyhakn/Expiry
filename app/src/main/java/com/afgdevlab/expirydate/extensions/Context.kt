@@ -186,6 +186,30 @@ fun Context.showDialog(mesaj:String,isSuccess: Boolean? = false) {
 
 
 
+fun Context.showForceUpdate(isSuccess: Boolean? = true) {
+    this.notNull {
+        val dialog = Dialog(it)
+        val binding: DialogDefaultBinding =
+            DataBindingUtil.inflate(dialog.layoutInflater, R.layout.dialog_default, null, false)
+
+        dialog.setCancelable(false)
+        dialog.setContentView(binding.root)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.window?.attributes?.windowAnimations = R.style.DialogAnimation
+        dialog.setCanceledOnTouchOutside(false)
+        dialog.show()
+
+        binding.rlDialog.setRXSafeOnClickListener {
+            redirectStore()
+        }
+
+        binding.isSuccess=isSuccess
+        binding.mesaj=resString(R.string.expiry_force_update)
+    }
+}
+
+
+
 
 fun Context.showProductStatus(isOpenProduct:Boolean,listenerOpenPackage: () -> Unit,listenerDelete: () -> Unit) {
     this.notNull {

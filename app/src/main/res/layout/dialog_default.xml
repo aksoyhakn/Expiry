@@ -22,6 +22,7 @@
         <com.tistory.zladnrms.roundablelayout.RoundableLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/rl_dialog"
             app:backgroundColor="@color/white"
             app:cornerLeftSide="20dp"
             app:cornerRightSide="20dp">

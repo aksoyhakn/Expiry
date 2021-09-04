@@ -29,6 +29,7 @@
     <string name="home_product_notifi_date"> %s son kullanma tarihinin bitmesine 1 gün kalmıştır.</string>
     <string name="home_product_notifi_week">%s son kullanma tarihinin bitmesine 1 hafta kalmıştır.</string>
     <string name="home_product_notifi_months">%s son kullanma tarihinin bitmesine 1 ay kalmıştır.</string>
+    <string name="expiry_force_update">Lütfen son sürümü yükleyiniz</string>
     <!-- Home -->
 
 </resources>
