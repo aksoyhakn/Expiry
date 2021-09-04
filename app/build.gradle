@@ -36,10 +36,10 @@ android {
     }
     signingConfigs {
         release {
-            keyAlias 'sweaters'
-            keyPassword 'Kuka142970.'
-            storeFile file('../distribution/SweatersKeystore.jks')
-            storePassword 'Kuka142970.'
+            keyAlias 'expiry'
+            keyPassword 'expiry'
+            storeFile file('../app/expiry.jks')
+            storePassword 'expiry'
         }
     }
 
